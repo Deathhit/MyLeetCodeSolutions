@@ -1,12 +1,19 @@
 <resources>
     <string name="app_name">My Leet Code Solutions</string>
 
+    <!--Add Two Numbers-->
+    <string name="add_two_numbers_code"></string>
+    <string name="add_two_numbers_description">You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order, and each of their nodes contains a single digit. Add the two numbers and return the sum as a linked list.
+    You may assume the two numbers do not contain any leading zero, except the number 0 itself.</string>
+    <string name="add_two_numbers_title">Add Two Numbers</string>
+
     <!--Common-->
-    <string name="common_input_x">Input: %s</string>
-    <string name="common_output_x">Output: %s</string>
+    <string name="common_input_x">Input:\n%s</string>
+    <string name="common_output_x">Output:\n%s</string>
     <string name="common_run">Run</string>
 
     <!--QuestionVO-->
+    <string name="question_vo_add_two_numbers">Add Two Numbers</string>
     <string name="question_vo_two_sum">Two Sum</string>
 
     <!--Sample-->
