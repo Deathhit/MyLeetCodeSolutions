@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">My Leet Code Solutions</string>
+
+    <!--Common-->
+    <string name="common_input_x">Input: %s</string>
+    <string name="common_output_x">Output: %s</string>
+    <string name="common_run">Run</string>
+
+    <!--QuestionVO-->
+    <string name="question_vo_two_sum">Two Sum</string>
+
+    <!--Sample-->
+    <string name="sample_text">Sample Text</string>
+
+    <!--Two Sum-->
+    <string name="two_sum_code">
+<![CDATA[
+<!DOCTYPE html>
+<p>&#160; &#160; fun twoSum(numbers: IntArray, target: Int): IntArray {</p>
+<p>&#160; &#160; &#160; &#160; val map = HashMap&lt;Int, Int&gt;()</p>
+<p>&#160; &#160; &#160; &#160; numbers.forEachIndexed{</p>
+<p>&#160; &#160; &#160; &#160; &#160; &#160; index, num -&gt;</p>
+<p>&#160; &#160; &#160; &#160; &#160; &#160; map[target - num]?. let {</p>
+<p>&#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; return intArrayOf(index, it)</p>
+<p>&#160; &#160; &#160; &#160; &#160; &#160; }</p>
+<p>&#160; &#160; &#160; &#160; &#160; &#160; map[num] = index</p>
+<p>&#160; &#160; &#160; &#160; }</p>
+<p>&#160; &#160; &#160; &#160; throw IllegalStateException(&quot;No solution!&quot;)</p>
+<p>&#160; &#160; }</p>
+]]>
+    </string>
+    <string name="two_sum_description">Given two sorted arrays number1 and number2 of size m and n respectively, return the median of the two sorted arrays.</string>
+    <string name="two_sum_numbers_x">numbers = %s</string>
+    <string name="two_sum_target_x">target = %s</string>
+    <string name="two_sum_title">Two Sum</string>
+</resources>
