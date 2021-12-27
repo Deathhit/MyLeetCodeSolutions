@@ -46,7 +46,7 @@ class TwoSumViewModel(application: Application) :
             application.getString(
                 STRING_NUMBERS_X,
                 numbers.toList().toString()
-            ) + ",\n\t " + application.getString(
+            ) + ", " + application.getString(
                 STRING_TARGET_X, target.toString()
             )
         )
