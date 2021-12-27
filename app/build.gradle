@@ -36,9 +36,6 @@ dependencies {
     implementation project(':framework')
     implementation project(':environment')
 
-    //CodeView
-    implementation 'me.jackdevey:codeview:1.0.5'
-
     //Leakcanary
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.7'
 
