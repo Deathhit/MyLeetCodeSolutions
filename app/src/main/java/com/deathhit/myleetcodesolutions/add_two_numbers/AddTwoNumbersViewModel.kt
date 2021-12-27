@@ -8,7 +8,6 @@ import com.deathhit.framework.StatePackage
 import com.deathhit.framework.StateViewModel
 import com.deathhit.framework.Status
 import com.deathhit.myleetcodesolutions.R
-import kotlin.collections.HashMap
 import kotlin.random.Random
 
 class AddTwoNumbersViewModel(application: Application) :
@@ -20,15 +19,15 @@ class AddTwoNumbersViewModel(application: Application) :
     )
 
     companion object {
-        private const val MIN_LENGTH_OF_NUMBERS = 2
-        private const val MAX_LENGTH_OF_NUMBERS = 10
-        private const val MAX_VALUE_OF_NUMBERS = 100
+        private const val MIN_LENGTH_OF_LIST_NODES = 1
+        private const val MAX_LENGTH_OF_LIST_NODES = 5
+        private const val MAX_VALUE_OF_LIST_NODE = 9
 
-        private const val STRING_CODE = R.string.two_sum_code
+        private const val STRING_CODE = R.string.add_two_numbers_code
         private const val STRING_INPUT_X = R.string.common_input_x
-        private const val STRING_NUMBERS_X = R.string.two_sum_numbers_x
+        private const val STRING_L1_X = R.string.add_two_numbers_l1_x
+        private const val STRING_L2_X = R.string.add_two_numbers_l2_x
         private const val STRING_OUTPUT_X = R.string.common_output_x
-        private const val STRING_TARGET_X = R.string.two_sum_target_x
     }
 
     private val statusCode = StatePackage<Spanned>()
@@ -38,20 +37,20 @@ class AddTwoNumbersViewModel(application: Application) :
     override fun createState(): State = State(statusCode, statusInput, statusOutput)
 
     fun run() {
-        val numbers = generateNumbers()
-        val target = generateTarget(numbers)
+        val l1 = generateListNode()
+        val l2 = generateListNode()
         val application = getApplication<Application>()
         val inputText = application.getString(
             STRING_INPUT_X,
             application.getString(
-                STRING_NUMBERS_X,
-                numbers.toList().toString()
+                STRING_L1_X,
+                listNodeToString(l1)
             ) + ", " + application.getString(
-                STRING_TARGET_X, target.toString()
+                STRING_L2_X, listNodeToString(l2)
             )
         )
-        val output = solve(numbers, target)
-        val outputText = application.getString(STRING_OUTPUT_X, output.toList().toString())
+        val output = addTwoNumbers(l1, l2)
+        val outputText = application.getString(STRING_OUTPUT_X, listNodeToString(output))
 
         statusInput.content = inputText
         statusOutput.content = outputText
@@ -60,37 +59,48 @@ class AddTwoNumbersViewModel(application: Application) :
 
     fun showCode() {
         val application = getApplication<Application>()
-        statusCode.content = HtmlCompat.fromHtml(application.getString(STRING_CODE), FROM_HTML_MODE_COMPACT)
+        statusCode.content =
+            HtmlCompat.fromHtml(application.getString(STRING_CODE), FROM_HTML_MODE_COMPACT)
         postState()
     }
 
-    private fun generateNumbers(): IntArray {
-        return IntArray(
-            Random.nextInt(
-                MIN_LENGTH_OF_NUMBERS,
-                MAX_LENGTH_OF_NUMBERS
-            )
-        ).map { Random.nextInt(MAX_VALUE_OF_NUMBERS) }
-            .toIntArray()
-    }
-
-    private fun generateTarget(numbers: IntArray): Int {
-        val firstIndex = Random.nextInt(numbers.size)
-        var secondIndex: Int
+    private fun listNodeToString(listNode: ListNode?): String {
+        val list = ArrayList<Int>()
+        var temp: ListNode? = listNode
         do {
-            secondIndex = Random.nextInt(numbers.size)
-        } while (firstIndex == secondIndex)
-        return numbers[firstIndex] + numbers[secondIndex]
+            list.add(temp!!.`val`)
+            temp = temp.next
+        } while (temp != null)
+        return list.toString()
     }
 
-    private fun solve(numbers: IntArray, target: Int): IntArray {
-        val map = HashMap<Int, Int>()
-        numbers.forEachIndexed { index, num ->
-            map[target - num]?.let {
-                return intArrayOf(index, it)
-            }
-            map[num] = index
+    private fun generateListNode(): ListNode {
+        val length = Random.nextInt(MIN_LENGTH_OF_LIST_NODES, MAX_LENGTH_OF_LIST_NODES)
+        val result = ListNode(generateListNodeValue())
+        var temp = result
+        var i = 1
+        while (i < length) {
+            temp.next = ListNode(generateListNodeValue())
+            temp = temp.next!!
+            i++
         }
-        throw IllegalStateException("No solution!")
+        return result
+    }
+
+    private fun generateListNodeValue(): Int {
+        return Random.nextInt(MAX_VALUE_OF_LIST_NODE)
+    }
+
+    private fun addTwoNumbers(l1: ListNode?, l2: ListNode?): ListNode? {
+        if (l1 == null && l2 == null)
+            return null
+        var sum = 0
+        l1?.let { sum += l1.`val` }
+        l2?.let { sum += l2.`val` }
+        val result = ListNode(sum % 10)
+        result.next = addTwoNumbers(l1?.next, l2?.next)
+        if (sum / 10 >= 1)
+            result.next = addTwoNumbers(result.next, ListNode(1))
+        return result
     }
 }

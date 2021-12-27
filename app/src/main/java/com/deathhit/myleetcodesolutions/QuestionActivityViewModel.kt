@@ -8,19 +8,25 @@ import com.deathhit.myleetcodesolutions.base.enum_type.Question
 import com.deathhit.myleetcodesolutions.base.model.QuestionVO
 import java.lang.RuntimeException
 
-class QuestionActivityViewModel(application: Application) : StateViewModel<QuestionActivityViewModel.State>(
-    application
-) {
-    class State(val eventAddTwoSumFragment: Event<Unit>)
+class QuestionActivityViewModel(application: Application) :
+    StateViewModel<QuestionActivityViewModel.State>(
+        application
+    ) {
+    class State(
+        val eventAddAddTwoNumbersFragment: Event<Unit>,
+        val eventAddTwoSumFragment: Event<Unit>
+    )
 
+    private val eventAddAddTwoNumbersFragment = StatePackage<Unit>()
     private val eventAddTwoSumFragment = StatePackage<Unit>()
 
     var questionVO: QuestionVO? = null
 
-    override fun createState(): State = State(eventAddTwoSumFragment)
+    override fun createState(): State = State(eventAddAddTwoNumbersFragment, eventAddTwoSumFragment)
 
     fun addTheTargetFragment() {
-        when(questionVO?.question) {
+        when (questionVO?.question) {
+            Question.ADD_TWO_NUMBERS -> eventAddAddTwoNumbersFragment.content = Unit
             Question.TWO_SUM -> eventAddTwoSumFragment.content = Unit
             else -> throw RuntimeException("Unexpected question!")
         }

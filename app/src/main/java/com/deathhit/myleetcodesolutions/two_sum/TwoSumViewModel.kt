@@ -50,7 +50,7 @@ class TwoSumViewModel(application: Application) :
                 STRING_TARGET_X, target.toString()
             )
         )
-        val output = solve(numbers, target)
+        val output = twoSum(numbers, target)
         val outputText = application.getString(STRING_OUTPUT_X, output.toList().toString())
 
         statusInput.content = inputText
@@ -83,7 +83,7 @@ class TwoSumViewModel(application: Application) :
         return numbers[firstIndex] + numbers[secondIndex]
     }
 
-    private fun solve(numbers: IntArray, target: Int): IntArray {
+    private fun twoSum(numbers: IntArray, target: Int): IntArray {
         val map = HashMap<Int, Int>()
         numbers.forEachIndexed { index, num ->
             map[target - num]?.let {
