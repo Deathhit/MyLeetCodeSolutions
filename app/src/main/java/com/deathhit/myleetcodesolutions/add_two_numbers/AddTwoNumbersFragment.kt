@@ -16,7 +16,7 @@ class AddTwoNumbersFragment : StateFragment<AddTwoNumbersViewModel.State, AddTwo
         private const val ID_TEXT_CODE = R.id.textView_code
         private const val ID_TEXT_INPUT = R.id.textView_input
         private const val ID_TEXT_OUTPUT = R.id.textView_output
-        private const val LAYOUT = R.layout.fragment_two_sum
+        private const val LAYOUT = R.layout.fragment_add_two_numbers
 
         fun create(): AddTwoNumbersFragment = AddTwoNumbersFragment()
     }
@@ -32,7 +32,7 @@ class AddTwoNumbersFragment : StateFragment<AddTwoNumbersViewModel.State, AddTwo
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel.run()
+        savedInstanceState ?: viewModel.run()
     }
 
     override fun onCreateView(

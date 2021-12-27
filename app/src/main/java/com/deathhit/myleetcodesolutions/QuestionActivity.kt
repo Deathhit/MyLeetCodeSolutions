@@ -43,7 +43,7 @@ class QuestionActivity :
             state.eventAddTwoSumFragment.signForEvent(this)?.let { addTwoSumFragment() }
         })
 
-        savedInstanceState ?: kotlin.run { viewModel.addTheTargetFragment() }
+        savedInstanceState ?: viewModel.addTheTargetFragment()
     }
 
     override fun onFragmentAttach(fragment: Fragment) {

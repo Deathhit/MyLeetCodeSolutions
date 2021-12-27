@@ -32,7 +32,7 @@ class TwoSumFragment : StateFragment<TwoSumViewModel.State, TwoSumViewModel>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel.run()
+        savedInstanceState ?: viewModel.run()
     }
 
     override fun onCreateView(

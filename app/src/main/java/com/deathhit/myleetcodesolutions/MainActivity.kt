@@ -28,7 +28,7 @@ class MainActivity : StateActivity<MainActivityViewModel.State, MainActivityView
             }
         })
 
-        savedInstanceState ?: kotlin.run { viewModel.addQuestionListFragment() }
+        savedInstanceState ?: viewModel.addQuestionListFragment()
     }
 
     override fun createViewModel(args: Bundle): MainActivityViewModel {

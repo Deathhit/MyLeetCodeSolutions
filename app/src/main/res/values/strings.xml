@@ -54,7 +54,9 @@
 <p>&#160; &#160; }</p>
 ]]>
     </string>
-    <string name="two_sum_description">Given two sorted arrays number1 and number2 of size m and n respectively, return the median of the two sorted arrays.</string>
+    <string name="two_sum_description">Given an array of integers numbers and an integer target, return indices of the two numbers such that they add up to target.
+You may assume that each input would have exactly one solution, and you may not use the same element twice.
+You can return the answer in any order.</string>
     <string name="two_sum_numbers_x">numbers = %s</string>
     <string name="two_sum_target_x">target = %s</string>
     <string name="two_sum_title">Two Sum</string>
