@@ -21,16 +21,12 @@ class TwoSumSolution(application: Application) : Solution(application) {
         private const val STRING_TARGET_X = R.string.two_sum_target_x
     }
 
-    override fun getCode(): Spanned {
-        return HtmlCompat.fromHtml(
-            application.getString(STRING_CODE),
-            HtmlCompat.FROM_HTML_MODE_COMPACT
-        )
-    }
+    override fun code(): Spanned = HtmlCompat.fromHtml(
+        application.getString(STRING_CODE),
+        HtmlCompat.FROM_HTML_MODE_COMPACT
+    )
 
-    override fun getDescription(): String {
-        return application.getString(STRING_DESCRIPTION)
-    }
+    override fun description(): String = application.getString(STRING_DESCRIPTION)
 
     override fun run(): AnswerVO {
         val numbers = generateNumbers()
@@ -49,15 +45,13 @@ class TwoSumSolution(application: Application) : Solution(application) {
         return AnswerVO(inputText, outputText)
     }
 
-    private fun generateNumbers(): IntArray {
-        return IntArray(
+    private fun generateNumbers(): IntArray = IntArray(
             Random.nextInt(
                 MIN_LENGTH_OF_NUMBERS,
                 MAX_LENGTH_OF_NUMBERS
             )
         ).map { Random.nextInt(MAX_VALUE_OF_NUMBERS) }
             .toIntArray()
-    }
 
     private fun generateTarget(numbers: IntArray): Int {
         val firstIndex = Random.nextInt(numbers.size)

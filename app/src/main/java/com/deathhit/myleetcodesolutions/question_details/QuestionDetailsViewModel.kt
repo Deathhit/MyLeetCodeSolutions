@@ -42,8 +42,8 @@ class QuestionDetailsViewModel(application: Application) :
     }
 
     fun showDetails() {
-        statusCode.content = solution.getCode()
-        statusDescription.content = solution.getDescription()
+        statusCode.content = solution.code
+        statusDescription.content = solution.description
         statusTitle.content = questionVO?.name
         postState()
     }

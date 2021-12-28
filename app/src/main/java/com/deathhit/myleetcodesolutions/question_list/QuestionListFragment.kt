@@ -29,7 +29,7 @@ class QuestionListFragment : StateFragment<QuestionListViewModel.State, Question
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        savedInstanceState ?: viewModel.loadQuestionList()
+        viewModel.loadQuestionList()
     }
 
     override fun onCreateView(

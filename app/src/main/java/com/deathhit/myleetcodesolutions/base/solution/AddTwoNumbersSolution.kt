@@ -24,17 +24,13 @@ class AddTwoNumbersSolution(application: Application) : Solution(application) {
     private class ListNode(var `val`: Int) {
         var next: ListNode? = null
     }
-    
-    override fun getCode(): Spanned {
-        return HtmlCompat.fromHtml(
-            application.getString(STRING_CODE),
-            HtmlCompat.FROM_HTML_MODE_COMPACT
-        )
-    }
 
-    override fun getDescription(): String {
-        return application.getString(STRING_DESCRIPTION)
-    }
+    override fun code(): Spanned = HtmlCompat.fromHtml(
+        application.getString(STRING_CODE),
+        HtmlCompat.FROM_HTML_MODE_COMPACT
+    )
+
+    override fun description(): String = application.getString(STRING_DESCRIPTION)
 
     override fun run(): AnswerVO {
         val l1 = generateListNode()
@@ -52,7 +48,7 @@ class AddTwoNumbersSolution(application: Application) : Solution(application) {
         val outputText = application.getString(STRING_OUTPUT_X, listNodeToString(output))
         return AnswerVO(inputText, outputText)
     }
-    
+
     private fun listNodeToString(listNode: ListNode?): String {
         val list = ArrayList<Int>()
         var temp: ListNode? = listNode
@@ -68,22 +64,24 @@ class AddTwoNumbersSolution(application: Application) : Solution(application) {
             MIN_LENGTH_OF_LIST_NODES,
             MAX_LENGTH_OF_LIST_NODES
         )
-        val result =
-            ListNode(generateListNodeValue())
+        val result = ListNode(generateListNodeValue())
         var temp = result
         var i = 1
-        while (i < length) {
-            temp.next =
-                ListNode(generateListNodeValue())
+        while (true) {
+            if (++i < length)
+                temp.next = ListNode(generateListNodeValue())
+            else {
+                temp.next = ListNode(generateNonZeroListNodeValue())
+                break
+            }
             temp = temp.next!!
-            i++
         }
         return result
     }
 
-    private fun generateListNodeValue(): Int {
-        return Random.nextInt(MAX_VALUE_OF_LIST_NODE)
-    }
+    private fun generateListNodeValue(): Int = Random.nextInt(MAX_VALUE_OF_LIST_NODE)
+
+    private fun generateNonZeroListNodeValue(): Int = Random.nextInt(1, MAX_VALUE_OF_LIST_NODE)
 
     private fun addTwoNumbers(l1: ListNode?, l2: ListNode?): ListNode? {
         if (l1 == null && l2 == null)
@@ -94,7 +92,8 @@ class AddTwoNumbersSolution(application: Application) : Solution(application) {
         val result = ListNode(sum % 10)
         result.next = addTwoNumbers(l1?.next, l2?.next)
         if (sum / 10 >= 1)
-            result.next = addTwoNumbers(result.next,
+            result.next = addTwoNumbers(
+                result.next,
                 ListNode(1)
             )
         return result

@@ -46,7 +46,7 @@ class QuestionDetailsFragment : StateFragment<QuestionDetailsViewModel.State, Qu
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        savedInstanceState ?: viewModel.run()
+        viewModel.run()
     }
 
     override fun onCreateView(
