@@ -1,46 +1,40 @@
-package com.deathhit.myleetcodesolutions.two_sum
+package com.deathhit.myleetcodesolutions.base.solution
 
 import android.app.Application
 import android.text.Spanned
 import androidx.core.text.HtmlCompat
-import androidx.core.text.HtmlCompat.FROM_HTML_MODE_COMPACT
-import com.deathhit.framework.StatePackage
-import com.deathhit.framework.StateViewModel
-import com.deathhit.framework.Status
 import com.deathhit.myleetcodesolutions.R
-import kotlin.collections.HashMap
+import com.deathhit.myleetcodesolutions.base.model.AnswerVO
 import kotlin.random.Random
 
-class TwoSumViewModel(application: Application) :
-    StateViewModel<TwoSumViewModel.State>(application) {
-    class State(
-        val statusCode: Status<Spanned>,
-        val statusInput: Status<String>,
-        val statusOutput: Status<String>
-    )
-
+class TwoSumSolution(application: Application) : Solution(application) {
     companion object {
         private const val MIN_LENGTH_OF_NUMBERS = 2
         private const val MAX_LENGTH_OF_NUMBERS = 10
         private const val MAX_VALUE_OF_NUMBERS = 100
 
         private const val STRING_CODE = R.string.two_sum_code
+        private const val STRING_DESCRIPTION = R.string.two_sum_description
         private const val STRING_INPUT_X = R.string.common_input_x
         private const val STRING_NUMBERS_X = R.string.two_sum_numbers_x
         private const val STRING_OUTPUT_X = R.string.common_output_x
         private const val STRING_TARGET_X = R.string.two_sum_target_x
     }
 
-    private val statusCode = StatePackage<Spanned>()
-    private val statusInput = StatePackage<String>()
-    private val statusOutput = StatePackage<String>()
+    override fun getCode(): Spanned {
+        return HtmlCompat.fromHtml(
+            application.getString(STRING_CODE),
+            HtmlCompat.FROM_HTML_MODE_COMPACT
+        )
+    }
 
-    override fun createState(): State = State(statusCode, statusInput, statusOutput)
+    override fun getDescription(): String {
+        return application.getString(STRING_DESCRIPTION)
+    }
 
-    fun run() {
+    override fun run(): AnswerVO {
         val numbers = generateNumbers()
         val target = generateTarget(numbers)
-        val application = getApplication<Application>()
         val inputText = application.getString(
             STRING_INPUT_X,
             application.getString(
@@ -52,16 +46,7 @@ class TwoSumViewModel(application: Application) :
         )
         val output = twoSum(numbers, target)
         val outputText = application.getString(STRING_OUTPUT_X, output.toList().toString())
-
-        statusInput.content = inputText
-        statusOutput.content = outputText
-        postState()
-    }
-
-    fun showCode() {
-        val application = getApplication<Application>()
-        statusCode.content = HtmlCompat.fromHtml(application.getString(STRING_CODE), FROM_HTML_MODE_COMPACT)
-        postState()
+        return AnswerVO(inputText, outputText)
     }
 
     private fun generateNumbers(): IntArray {

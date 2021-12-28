@@ -1,45 +1,44 @@
-package com.deathhit.myleetcodesolutions.add_two_numbers
+package com.deathhit.myleetcodesolutions.base.solution
 
 import android.app.Application
 import android.text.Spanned
 import androidx.core.text.HtmlCompat
-import androidx.core.text.HtmlCompat.FROM_HTML_MODE_COMPACT
-import com.deathhit.framework.StatePackage
-import com.deathhit.framework.StateViewModel
-import com.deathhit.framework.Status
 import com.deathhit.myleetcodesolutions.R
+import com.deathhit.myleetcodesolutions.base.model.AnswerVO
 import kotlin.random.Random
 
-class AddTwoNumbersViewModel(application: Application) :
-    StateViewModel<AddTwoNumbersViewModel.State>(application) {
-    class State(
-        val statusCode: Status<Spanned>,
-        val statusInput: Status<String>,
-        val statusOutput: Status<String>
-    )
-
+class AddTwoNumbersSolution(application: Application) : Solution(application) {
     companion object {
         private const val MIN_LENGTH_OF_LIST_NODES = 1
         private const val MAX_LENGTH_OF_LIST_NODES = 5
         private const val MAX_VALUE_OF_LIST_NODE = 9
 
         private const val STRING_CODE = R.string.add_two_numbers_code
+        private const val STRING_DESCRIPTION = R.string.add_two_numbers_description
         private const val STRING_INPUT_X = R.string.common_input_x
         private const val STRING_L1_X = R.string.add_two_numbers_l1_x
         private const val STRING_L2_X = R.string.add_two_numbers_l2_x
         private const val STRING_OUTPUT_X = R.string.common_output_x
     }
 
-    private val statusCode = StatePackage<Spanned>()
-    private val statusInput = StatePackage<String>()
-    private val statusOutput = StatePackage<String>()
+    private class ListNode(var `val`: Int) {
+        var next: ListNode? = null
+    }
+    
+    override fun getCode(): Spanned {
+        return HtmlCompat.fromHtml(
+            application.getString(STRING_CODE),
+            HtmlCompat.FROM_HTML_MODE_COMPACT
+        )
+    }
 
-    override fun createState(): State = State(statusCode, statusInput, statusOutput)
+    override fun getDescription(): String {
+        return application.getString(STRING_DESCRIPTION)
+    }
 
-    fun run() {
+    override fun run(): AnswerVO {
         val l1 = generateListNode()
         val l2 = generateListNode()
-        val application = getApplication<Application>()
         val inputText = application.getString(
             STRING_INPUT_X,
             application.getString(
@@ -51,19 +50,9 @@ class AddTwoNumbersViewModel(application: Application) :
         )
         val output = addTwoNumbers(l1, l2)
         val outputText = application.getString(STRING_OUTPUT_X, listNodeToString(output))
-
-        statusInput.content = inputText
-        statusOutput.content = outputText
-        postState()
+        return AnswerVO(inputText, outputText)
     }
-
-    fun showCode() {
-        val application = getApplication<Application>()
-        statusCode.content =
-            HtmlCompat.fromHtml(application.getString(STRING_CODE), FROM_HTML_MODE_COMPACT)
-        postState()
-    }
-
+    
     private fun listNodeToString(listNode: ListNode?): String {
         val list = ArrayList<Int>()
         var temp: ListNode? = listNode
@@ -75,12 +64,17 @@ class AddTwoNumbersViewModel(application: Application) :
     }
 
     private fun generateListNode(): ListNode {
-        val length = Random.nextInt(MIN_LENGTH_OF_LIST_NODES, MAX_LENGTH_OF_LIST_NODES)
-        val result = ListNode(generateListNodeValue())
+        val length = Random.nextInt(
+            MIN_LENGTH_OF_LIST_NODES,
+            MAX_LENGTH_OF_LIST_NODES
+        )
+        val result =
+            ListNode(generateListNodeValue())
         var temp = result
         var i = 1
         while (i < length) {
-            temp.next = ListNode(generateListNodeValue())
+            temp.next =
+                ListNode(generateListNodeValue())
             temp = temp.next!!
             i++
         }
@@ -100,7 +94,9 @@ class AddTwoNumbersViewModel(application: Application) :
         val result = ListNode(sum % 10)
         result.next = addTwoNumbers(l1?.next, l2?.next)
         if (sum / 10 >= 1)
-            result.next = addTwoNumbers(result.next, ListNode(1))
+            result.next = addTwoNumbers(result.next,
+                ListNode(1)
+            )
         return result
     }
 }

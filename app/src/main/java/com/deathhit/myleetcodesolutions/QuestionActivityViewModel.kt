@@ -4,32 +4,24 @@ import android.app.Application
 import com.deathhit.framework.Event
 import com.deathhit.framework.StatePackage
 import com.deathhit.framework.StateViewModel
-import com.deathhit.myleetcodesolutions.base.enum_type.Question
 import com.deathhit.myleetcodesolutions.base.model.QuestionVO
-import java.lang.RuntimeException
 
 class QuestionActivityViewModel(application: Application) :
     StateViewModel<QuestionActivityViewModel.State>(
         application
     ) {
     class State(
-        val eventAddAddTwoNumbersFragment: Event<Unit>,
-        val eventAddTwoSumFragment: Event<Unit>
+        val eventAddQuestionDetailsFragment: Event<QuestionVO>,
     )
 
-    private val eventAddAddTwoNumbersFragment = StatePackage<Unit>()
-    private val eventAddTwoSumFragment = StatePackage<Unit>()
+    private val eventAddQuestionDetailsFragment = StatePackage<QuestionVO>()
 
     var questionVO: QuestionVO? = null
 
-    override fun createState(): State = State(eventAddAddTwoNumbersFragment, eventAddTwoSumFragment)
+    override fun createState(): State = State(eventAddQuestionDetailsFragment)
 
-    fun addTheTargetFragment() {
-        when (questionVO?.question) {
-            Question.ADD_TWO_NUMBERS -> eventAddAddTwoNumbersFragment.content = Unit
-            Question.TWO_SUM -> eventAddTwoSumFragment.content = Unit
-            else -> throw RuntimeException("Unexpected question!")
-        }
+    fun addQuestionDetailsFragment() {
+        eventAddQuestionDetailsFragment.content = questionVO
         postState()
     }
 }

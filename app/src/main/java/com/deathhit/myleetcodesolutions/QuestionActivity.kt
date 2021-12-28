@@ -6,17 +6,15 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
 import com.deathhit.framework.toolbox.StateActivity
-import com.deathhit.myleetcodesolutions.add_two_numbers.AddTwoNumbersFragment
 import com.deathhit.myleetcodesolutions.base.model.QuestionVO
-import com.deathhit.myleetcodesolutions.two_sum.TwoSumFragment
+import com.deathhit.myleetcodesolutions.question_details.QuestionDetailsFragment
 
 class QuestionActivity :
     StateActivity<QuestionActivityViewModel.State, QuestionActivityViewModel>() {
     companion object {
         private const val TAG = "QuestionActivity"
         private const val KEY_QUESTION_VO = "$TAG.KEY_QUESTION_VO"
-        private const val TAG_ADD_TWO_NUMBERS_FRAGMENT = "$TAG.TAG_ADD_TWO_NUMBERS_FRAGMENT"
-        private const val TAG_TWO_SUM_FRAGMENT = "$TAG.TAG_TWO_SUM_FRAGMENT"
+        private const val TAG_QUESTION_DETAILS_FRAGMENT = "$TAG.TAG_QUESTION_DETAILS_FRAGMENT"
 
         private const val ID_CONTAINER = R.id.activity_frameLayout_container
         private const val LAYOUT = R.layout.activity_question
@@ -39,11 +37,11 @@ class QuestionActivity :
         setContentView(LAYOUT)
 
         viewModel.getStateLiveData().observe(this, { state ->
-            state.eventAddAddTwoNumbersFragment.signForEvent(this)?.let { addAddTwoNumbersFragment() }
-            state.eventAddTwoSumFragment.signForEvent(this)?.let { addTwoSumFragment() }
+            state.eventAddQuestionDetailsFragment.signForEvent(this)
+                ?.let { addAddQuestionDetailsFragment(it) }
         })
 
-        savedInstanceState ?: viewModel.addTheTargetFragment()
+        savedInstanceState ?: viewModel.addQuestionDetailsFragment()
     }
 
     override fun onFragmentAttach(fragment: Fragment) {
@@ -54,14 +52,13 @@ class QuestionActivity :
         args.putParcelable(KEY_QUESTION_VO, viewModel.questionVO)
     }
 
-    private fun addAddTwoNumbersFragment() {
+    private fun addAddQuestionDetailsFragment(questionVO: QuestionVO) {
         supportFragmentManager.beginTransaction()
-            .add(ID_CONTAINER, AddTwoNumbersFragment.create(), TAG_ADD_TWO_NUMBERS_FRAGMENT)
+            .add(
+                ID_CONTAINER,
+                QuestionDetailsFragment.create(questionVO),
+                TAG_QUESTION_DETAILS_FRAGMENT
+            )
             .commit()
-    }
-
-    private fun addTwoSumFragment() {
-        supportFragmentManager.beginTransaction()
-            .add(ID_CONTAINER, TwoSumFragment.create(), TAG_TWO_SUM_FRAGMENT).commit()
     }
 }
