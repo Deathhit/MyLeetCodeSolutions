@@ -30,8 +30,35 @@
     <string name="common_output_x">Output:\n%s</string>
     <string name="common_run">Run</string>
 
+    <!--Longest Substring Without Repeating Characters-->
+    <string name="longest_substring_without_repeating_characters_code">
+<![CDATA[
+<!DOCTYPE html>
+<p>&nbsp; &nbsp; fun lengthOfLongestSubstring(s: String): Int {</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; val charMap = HashMap&lt;Char, Int&gt;(s.length)</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; var max = 0</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; var start = 0</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; s.forEachIndexed { index, char -&gt;</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; charMap[char]?.takeIf { it &gt;= start }?.let {</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; max = maxOf(index - start, max)</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; start = it + 1</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; charMap[char] = index</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; }</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; return maxOf(max, s.length - start)</p>
+<p>&nbsp; &nbsp; }</p>
+]]>
+    </string>
+    <string name="longest_substring_without_repeating_characters_description">
+        Given a string s, find the length of the longest substring without repeating characters.
+    </string>
+    <string name="longest_substring_without_repeating_characters_s_x">
+        s = %s
+    </string>
+
     <!--QuestionVO-->
     <string name="question_vo_add_two_numbers">Add Two Numbers</string>
+    <string name="question_vo_longest_substring_without_repeating_characters">Longest Substring Without Repeating Characters</string>
     <string name="question_vo_two_sum">Two Sum</string>
 
     <!--Sample-->

@@ -8,6 +8,7 @@ import com.deathhit.framework.Status
 import com.deathhit.myleetcodesolutions.base.enum_type.Question
 import com.deathhit.myleetcodesolutions.base.model.QuestionVO
 import com.deathhit.myleetcodesolutions.base.solution.AddTwoNumbersSolution
+import com.deathhit.myleetcodesolutions.base.solution.LongestSubstringWithoutRepeatingCharactersSolution
 import com.deathhit.myleetcodesolutions.base.solution.Solution
 import com.deathhit.myleetcodesolutions.base.solution.TwoSumSolution
 
@@ -48,9 +49,12 @@ class QuestionDetailsViewModel(application: Application) :
         postState()
     }
 
-    private fun createSolution(): Solution{
-        return when(questionVO!!.question) {
+    private fun createSolution(): Solution {
+        return when (questionVO!!.question) {
             Question.ADD_TWO_NUMBERS -> AddTwoNumbersSolution(getApplication())
+            Question.LONGEST_SUBSTRING_WITHOUT_REPEATING_CHARACTERS -> LongestSubstringWithoutRepeatingCharactersSolution(
+                getApplication()
+            )
             Question.TWO_SUM -> TwoSumSolution(getApplication())
         }
     }
