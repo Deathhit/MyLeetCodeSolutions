@@ -1,4 +1,4 @@
-package com.deathhit.myleetcodesolutions.base.solution
+package com.deathhit.myleetcodesolutions.base.question_model
 
 import android.app.Application
 import android.text.Spanned
@@ -7,7 +7,7 @@ import com.deathhit.myleetcodesolutions.R
 import com.deathhit.myleetcodesolutions.base.model.AnswerVO
 import kotlin.random.Random
 
-class TwoSumSolution(application: Application) : Solution(application) {
+class TwoSum(application: Application) : QuestionModel(application) {
     companion object {
         private const val MIN_LENGTH_OF_NUMBERS = 2
         private const val MAX_LENGTH_OF_NUMBERS = 10

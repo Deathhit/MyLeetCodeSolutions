@@ -7,10 +7,10 @@ import com.deathhit.framework.StateViewModel
 import com.deathhit.framework.Status
 import com.deathhit.myleetcodesolutions.base.enum_type.Question
 import com.deathhit.myleetcodesolutions.base.model.QuestionVO
-import com.deathhit.myleetcodesolutions.base.solution.AddTwoNumbersSolution
-import com.deathhit.myleetcodesolutions.base.solution.LongestSubstringWithoutRepeatingCharactersSolution
-import com.deathhit.myleetcodesolutions.base.solution.Solution
-import com.deathhit.myleetcodesolutions.base.solution.TwoSumSolution
+import com.deathhit.myleetcodesolutions.base.question_model.AddTwoNumbers
+import com.deathhit.myleetcodesolutions.base.question_model.LongestSubstringWithoutRepeatingCharacters
+import com.deathhit.myleetcodesolutions.base.question_model.QuestionModel
+import com.deathhit.myleetcodesolutions.base.question_model.TwoSum
 
 class QuestionDetailsViewModel(application: Application) :
     StateViewModel<QuestionDetailsViewModel.State>(application) {
@@ -22,7 +22,7 @@ class QuestionDetailsViewModel(application: Application) :
         val statusTitle: Status<String>
     )
 
-    private val solution by lazy { createSolution() }
+    private val questionModel by lazy { createQuestionModel() }
 
     private val statusCode = StatePackage<Spanned>()
     private val statusDescription = StatePackage<String>()
@@ -36,26 +36,26 @@ class QuestionDetailsViewModel(application: Application) :
         State(statusCode, statusDescription, statusInput, statusOutput, statusTitle)
 
     fun run() {
-        val answerVO = solution.run()
+        val answerVO = questionModel.run()
         statusInput.content = answerVO.inputText
         statusOutput.content = answerVO.outputText
         postState()
     }
 
     fun showDetails() {
-        statusCode.content = solution.code
-        statusDescription.content = solution.description
+        statusCode.content = questionModel.code
+        statusDescription.content = questionModel.description
         statusTitle.content = questionVO?.name
         postState()
     }
 
-    private fun createSolution(): Solution {
+    private fun createQuestionModel(): QuestionModel {
         return when (questionVO!!.question) {
-            Question.ADD_TWO_NUMBERS -> AddTwoNumbersSolution(getApplication())
-            Question.LONGEST_SUBSTRING_WITHOUT_REPEATING_CHARACTERS -> LongestSubstringWithoutRepeatingCharactersSolution(
+            Question.ADD_TWO_NUMBERS -> AddTwoNumbers(getApplication())
+            Question.LONGEST_SUBSTRING_WITHOUT_REPEATING_CHARACTERS -> LongestSubstringWithoutRepeatingCharacters(
                 getApplication()
             )
-            Question.TWO_SUM -> TwoSumSolution(getApplication())
+            Question.TWO_SUM -> TwoSum(getApplication())
         }
     }
 }
