@@ -12,6 +12,8 @@ data class QuestionVO(val name: String, val question: Question) : Parcelable {
         private const val STRING_ADD_TWO_NUMBERS = R.string.question_vo_add_two_numbers
         private const val STRING_LONGEST_SUBSTRING_WITHOUT_REPEATING_CHARACTERS =
             R.string.question_vo_longest_substring_without_repeating_characters
+        private const val STRING_MEDIAN_OF_TWO_SORTED_ARRAYS =
+            R.string.question_vo_median_of_two_sorted_arrays
         private const val STRING_TWO_SUM = R.string.question_vo_two_sum
 
         fun valueOf(context: Context, question: Question): QuestionVO {
@@ -23,6 +25,11 @@ data class QuestionVO(val name: String, val question: Question) : Parcelable {
                 Question.LONGEST_SUBSTRING_WITHOUT_REPEATING_CHARACTERS -> QuestionVO(
                     context.getString(
                         STRING_LONGEST_SUBSTRING_WITHOUT_REPEATING_CHARACTERS
+                    ), question
+                )
+                Question.MEDIAN_OF_TWO_SORTED_ARRAYS -> QuestionVO(
+                    context.getString(
+                        STRING_MEDIAN_OF_TWO_SORTED_ARRAYS
                     ), question
                 )
                 Question.TWO_SUM -> QuestionVO(context.getString(STRING_TWO_SUM), question)

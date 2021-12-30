@@ -7,10 +7,7 @@ import com.deathhit.framework.StateViewModel
 import com.deathhit.framework.Status
 import com.deathhit.myleetcodesolutions.base.enum_type.Question
 import com.deathhit.myleetcodesolutions.base.model.QuestionVO
-import com.deathhit.myleetcodesolutions.base.question_model.AddTwoNumbers
-import com.deathhit.myleetcodesolutions.base.question_model.LongestSubstringWithoutRepeatingCharacters
-import com.deathhit.myleetcodesolutions.base.question_model.QuestionModel
-import com.deathhit.myleetcodesolutions.base.question_model.TwoSum
+import com.deathhit.myleetcodesolutions.base.question_model.*
 
 class QuestionDetailsViewModel(application: Application) :
     StateViewModel<QuestionDetailsViewModel.State>(application) {
@@ -55,6 +52,7 @@ class QuestionDetailsViewModel(application: Application) :
             Question.LONGEST_SUBSTRING_WITHOUT_REPEATING_CHARACTERS -> LongestSubstringWithoutRepeatingCharacters(
                 getApplication()
             )
+            Question.MEDIAN_OF_TWO_SORTED_ARRAYS -> MedianOfTwoSortedArrays(getApplication())
             Question.TWO_SUM -> TwoSum(getApplication())
         }
     }

@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">My Leet Code Solutions</string>
 
     <!--Add Two Numbers-->
@@ -56,9 +56,57 @@
         s = %s
     </string>
 
+    <!--Median Of Two Sorted Arrays-->
+    <string name="median_of_two_sorted_arrays_code" tools:ignore="Typos">
+<![CDATA[
+<!DOCTYPE html>
+<p>&nbsp; &nbsp; fun findMedianSortedArrays(numbers1: IntArray, numbers2: IntArray): Double {</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; if (numbers1.size &gt; numbers2.size)</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; return findMedianSortedArrays(numbers2, numbers1)</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; val mergedSize = numbers1.size + numbers2.size</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; val mergedMedianIndex = (mergedSize + 1) / 2</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; var lowerBound = 0</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; var upperBound = numbers1.size</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; while (lowerBound &lt; upperBound) {</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; val medianIndex1 = (lowerBound + upperBound) / 2</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; val medianIndex2 = mergedMedianIndex - medianIndex1</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (numbers1[medianIndex1] &lt; numbers2[medianIndex2 - 1])</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; lowerBound = medianIndex1 + 1</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; else</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; upperBound = medianIndex1</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; }</p>
+<p><br></p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; val medianIndex1 = lowerBound</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; val medianIndex2 = mergedMedianIndex - medianIndex1</p>
+<p><br></p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; val firstMedianValue = maxOf(</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (medianIndex1 &lt;= 0) Int.MIN_VALUE else numbers1[medianIndex1 - 1],</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (medianIndex2 &lt;= 0) Int.MIN_VALUE else numbers2[medianIndex2 - 1]</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; )</p>
+<p><br></p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; if (mergedSize % 2 &gt; 0)</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; return firstMedianValue.toDouble()</p>
+<p><br></p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; val secondMedianValue = minOf(</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (medianIndex1 &gt;= numbers1.size) Int.MAX_VALUE else numbers1[medianIndex1],</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (medianIndex2 &gt;= numbers2.size) Int.MAX_VALUE else numbers2[medianIndex2]</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; )</p>
+<p><br></p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; return (firstMedianValue + secondMedianValue).toDouble() / 2</p>
+<p>&nbsp; &nbsp; }</p>
+]]>
+    </string>
+    <string name="median_of_two_sorted_arrays_description">
+        Given two sorted arrays numbers1 and numbers2 of size m and n respectively, return the median of the two sorted arrays.
+        The overall run time complexity should be O(log (m+n)).
+    </string>
+    <string name="median_of_two_sorted_arrays_numbers1_x" tools:ignore="Typos">numbers1 = %s</string>
+    <string name="median_of_two_sorted_arrays_numbers2_x">numbers2 = %s</string>
+
     <!--QuestionVO-->
     <string name="question_vo_add_two_numbers">Add Two Numbers</string>
     <string name="question_vo_longest_substring_without_repeating_characters">Longest Substring Without Repeating Characters</string>
+    <string name="question_vo_median_of_two_sorted_arrays">Median Of Two Sorted Arrays</string>
     <string name="question_vo_two_sum">Two Sum</string>
 
     <!--Sample-->
