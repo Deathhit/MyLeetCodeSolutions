@@ -15,7 +15,7 @@ class QuestionViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
         private const val LAYOUT = R.layout.item_question
     }
 
-    val textName: TextView? = itemView.findViewById(ID_TEXT_NAME)
+    val textName: TextView = itemView.findViewById(ID_TEXT_NAME)
 
     var item: QuestionVO? = null
 }
