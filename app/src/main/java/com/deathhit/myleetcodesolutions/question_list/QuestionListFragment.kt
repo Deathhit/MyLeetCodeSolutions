@@ -27,11 +27,6 @@ class QuestionListFragment : StateFragment<QuestionListViewModel.State, Question
 
     private var adapter: QuestionAdapter? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        viewModel.loadQuestionList()
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -50,13 +45,6 @@ class QuestionListFragment : StateFragment<QuestionListViewModel.State, Question
             it.setHasFixedSize(true)
             it.adapter = adapter
         }
-
-        viewModel.getStateLiveData().observe(viewLifecycleOwner, { state ->
-            state.eventGoToQuestionActivity.signForEvent(this)?.let {
-
-            }
-            state.statusQuestionList.signForStatus(this)?.let { adapter?.submitList(it) }
-        })
     }
 
     override fun onDestroyView() {
@@ -66,13 +54,13 @@ class QuestionListFragment : StateFragment<QuestionListViewModel.State, Question
         adapter = null
     }
 
-    override fun createViewModel(args: Bundle): QuestionListViewModel {
+    override fun createViewModel(savedInstanceState: Bundle?): QuestionListViewModel {
         val viewModel: QuestionListViewModel by viewModels()
         return viewModel
     }
 
-    override fun onSaveViewModelArgs(args: Bundle) {
-
+    override fun onRenderState(state: QuestionListViewModel.State) {
+        state.statusQuestionList.signForStatus(this)?.let { adapter?.submitList(it) }
     }
 
     private fun createQuestionAdapter(): QuestionAdapter {

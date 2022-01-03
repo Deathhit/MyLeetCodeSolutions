@@ -32,17 +32,16 @@ class QuestionDetailsViewModel(application: Application) :
     override fun createState(): State =
         State(statusCode, statusDescription, statusInput, statusOutput, statusTitle)
 
+    override fun onLoadData() {
+        super.onLoadData()
+        run()
+        showDetails()
+    }
+
     fun run() {
         val answerVO = questionModel.run()
         statusInput.content = answerVO.inputText
         statusOutput.content = answerVO.outputText
-        postState()
-    }
-
-    fun showDetails() {
-        statusCode.content = questionModel.code
-        statusDescription.content = questionModel.description
-        statusTitle.content = questionVO?.name
         postState()
     }
 
@@ -55,5 +54,12 @@ class QuestionDetailsViewModel(application: Application) :
             Question.MEDIAN_OF_TWO_SORTED_ARRAYS -> MedianOfTwoSortedArrays(getApplication())
             Question.TWO_SUM -> TwoSum(getApplication())
         }
+    }
+
+    private fun showDetails() {
+        statusCode.content = questionModel.code
+        statusDescription.content = questionModel.description
+        statusTitle.content = questionVO?.name
+        postState()
     }
 }

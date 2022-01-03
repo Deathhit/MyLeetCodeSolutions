@@ -20,12 +20,17 @@ class QuestionListViewModel(application: Application) :
 
     override fun createState(): State = State(eventGoToQuestionActivity, statusQuestionList)
 
+    override fun onLoadData() {
+        super.onLoadData()
+        loadQuestionList()
+    }
+
     fun goToQuestionActivity(questionVO: QuestionVO) {
         eventGoToQuestionActivity.content = questionVO
         postState()
     }
 
-    fun loadQuestionList() {
+    private fun loadQuestionList() {
         statusQuestionList.content =
             Question.values().asList().map { QuestionVO.valueOf(getApplication(), it) }
         postState()

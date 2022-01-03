@@ -44,11 +44,6 @@ class QuestionDetailsFragment : StateFragment<QuestionDetailsViewModel.State, Qu
     private var textOutput: TextView? = null
     private var textTitle: TextView? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        viewModel.run()
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -65,16 +60,6 @@ class QuestionDetailsFragment : StateFragment<QuestionDetailsViewModel.State, Qu
         textInput = view.findViewById(ID_TEXT_INPUT)
         textOutput = view.findViewById(ID_TEXT_OUTPUT)
         textTitle = view.findViewById(ID_TEXT_TITLE)
-
-        viewModel.getStateLiveData().observe(viewLifecycleOwner, { state ->
-            state.statusCode.signForStatus(this)?.let { textCode?.text = it }
-            state.statusDescription.signForStatus(this)?.let { textDescription?.text = it }
-            state.statusInput.signForStatus(this)?.let { textInput?.text = it }
-            state.statusOutput.signForStatus(this)?.let { textOutput?.text = it }
-            state.statusTitle.signForStatus(this)?.let { textTitle?.text = it }
-        })
-
-        viewModel.showDetails()
     }
 
     override fun onResume() {
@@ -97,13 +82,23 @@ class QuestionDetailsFragment : StateFragment<QuestionDetailsViewModel.State, Qu
         textTitle = null
     }
 
-    override fun createViewModel(args: Bundle): QuestionDetailsViewModel {
+    override fun createViewModel(savedInstanceState: Bundle?): QuestionDetailsViewModel {
+        val args = savedInstanceState ?: arguments ?: Bundle()
         val viewModel: QuestionDetailsViewModel by viewModels()
         viewModel.questionVO = args.getParcelable(KEY_QUESTION_VO)
         return viewModel
     }
 
-    override fun onSaveViewModelArgs(args: Bundle) {
-        args.putParcelable(KEY_QUESTION_VO, viewModel.questionVO)
+    override fun onRenderState(state: QuestionDetailsViewModel.State) {
+        state.statusCode.signForStatus(this)?.let { textCode!!.text = it }
+        state.statusDescription.signForStatus(this)?.let { textDescription!!.text = it }
+        state.statusInput.signForStatus(this)?.let { textInput!!.text = it }
+        state.statusOutput.signForStatus(this)?.let { textOutput!!.text = it }
+        state.statusTitle.signForStatus(this)?.let { textTitle!!.text = it }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putParcelable(KEY_QUESTION_VO, viewModel.questionVO)
+        super.onSaveInstanceState(outState)
     }
 }

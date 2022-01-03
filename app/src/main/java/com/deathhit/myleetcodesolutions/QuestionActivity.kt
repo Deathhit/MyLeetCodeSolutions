@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.fragment.app.Fragment
 import com.deathhit.framework.toolbox.StateActivity
 import com.deathhit.myleetcodesolutions.base.model.QuestionVO
 import com.deathhit.myleetcodesolutions.question_details.QuestionDetailsFragment
@@ -26,7 +25,8 @@ class QuestionActivity :
         }
     }
 
-    override fun createViewModel(args: Bundle): QuestionActivityViewModel {
+    override fun createViewModel(savedInstanceState: Bundle?): QuestionActivityViewModel {
+        val args = savedInstanceState ?: intent.extras ?: Bundle()
         val viewModel: QuestionActivityViewModel by viewModels()
         viewModel.questionVO = args.getParcelable(KEY_QUESTION_VO)
         return viewModel
@@ -36,20 +36,17 @@ class QuestionActivity :
         super.onCreate(savedInstanceState)
         setContentView(LAYOUT)
 
-        viewModel.getStateLiveData().observe(this, { state ->
-            state.eventAddQuestionDetailsFragment.signForEvent(this)
-                ?.let { addAddQuestionDetailsFragment(it) }
-        })
-
         savedInstanceState ?: viewModel.addQuestionDetailsFragment()
     }
 
-    override fun onFragmentAttach(fragment: Fragment) {
-
+    override fun onRenderState(state: QuestionActivityViewModel.State) {
+        state.eventAddQuestionDetailsFragment.signForEvent(this)
+            ?.let { addAddQuestionDetailsFragment(it) }
     }
 
-    override fun onSaveViewModelArgs(args: Bundle) {
-        args.putParcelable(KEY_QUESTION_VO, viewModel.questionVO)
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putParcelable(KEY_QUESTION_VO, viewModel.questionVO)
+        super.onSaveInstanceState(outState)
     }
 
     private fun addAddQuestionDetailsFragment(questionVO: QuestionVO) {

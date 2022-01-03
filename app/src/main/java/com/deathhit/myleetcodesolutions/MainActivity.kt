@@ -19,35 +19,31 @@ class MainActivity : StateActivity<MainActivityViewModel.State, MainActivityView
         super.onCreate(savedInstanceState)
         setContentView(LAYOUT)
 
-        viewModel.getStateLiveData().observe(this, { state ->
-            state.eventAddQuestionListFragment.signForEvent(this)?.let {
-                addQuestionListFragment()
-            }
-            state.eventGoToQuestionActivity.signForEvent(this)?.let {
-                goToQuestionActivity(it)
-            }
-        })
-
         savedInstanceState ?: viewModel.addQuestionListFragment()
     }
 
-    override fun createViewModel(args: Bundle): MainActivityViewModel {
+    override fun createViewModel(savedInstanceState: Bundle?): MainActivityViewModel {
         val viewModel: MainActivityViewModel by viewModels()
         return viewModel
     }
 
     override fun onFragmentAttach(fragment: Fragment) {
         if (fragment is QuestionListFragment) {
-            fragment.viewModel.getStateLiveData().observe(this, { state ->
+            observeState(fragment) { state ->
                 state.eventGoToQuestionActivity.signForEvent(this)?.let {
                     viewModel.goToQuestionActivity(it)
                 }
-            })
+            }
         }
     }
 
-    override fun onSaveViewModelArgs(args: Bundle) {
-
+    override fun onRenderState(state: MainActivityViewModel.State) {
+        state.eventAddQuestionListFragment.signForEvent(this)?.let {
+            addQuestionListFragment()
+        }
+        state.eventGoToQuestionActivity.signForEvent(this)?.let {
+            goToQuestionActivity(it)
+        }
     }
 
     private fun addQuestionListFragment() {
