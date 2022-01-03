@@ -15,7 +15,7 @@ class QuestionListFragment : StateFragment<QuestionListViewModel.State, Question
         private const val ID_RECYCLER_VIEW = R.id.recyclerView
         private const val LAYOUT = R.layout.fragment_question_list
 
-        fun create(): QuestionListFragment{
+        fun create(): QuestionListFragment {
             val args = Bundle()
             val fragment = QuestionListFragment()
             fragment.arguments = args
@@ -25,7 +25,7 @@ class QuestionListFragment : StateFragment<QuestionListViewModel.State, Question
 
     private var recyclerView: RecyclerView? = null
 
-    private var adapter: QuestionAdapter? = null
+    private var questionAdapter: QuestionAdapter? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,13 +37,9 @@ class QuestionListFragment : StateFragment<QuestionListViewModel.State, Question
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        recyclerView = view.findViewById(ID_RECYCLER_VIEW)
-
-        adapter = createQuestionAdapter()
-
-        recyclerView?.let {
-            it.setHasFixedSize(true)
-            it.adapter = adapter
+        recyclerView = view.findViewById<RecyclerView>(ID_RECYCLER_VIEW).apply {
+            setHasFixedSize(true)
+            questionAdapter = createQuestionAdapter().also { adapter = it }
         }
     }
 
@@ -51,7 +47,7 @@ class QuestionListFragment : StateFragment<QuestionListViewModel.State, Question
         super.onDestroyView()
         recyclerView = null
 
-        adapter = null
+        questionAdapter = null
     }
 
     override fun createViewModel(savedInstanceState: Bundle?): QuestionListViewModel {
@@ -60,7 +56,7 @@ class QuestionListFragment : StateFragment<QuestionListViewModel.State, Question
     }
 
     override fun onRenderState(state: QuestionListViewModel.State) {
-        state.statusQuestionList.signForStatus(this)?.let { adapter?.submitList(it) }
+        state.statusQuestionList.signForStatus(this)?.let { questionAdapter?.submitList(it) }
     }
 
     private fun createQuestionAdapter(): QuestionAdapter {
