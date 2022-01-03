@@ -45,11 +45,11 @@ class AddTwoNumbers(application: Application) : QuestionModel(application) {
             )
         )
         val output = addTwoNumbers(l1, l2)
-        val outputText = application.getString(STRING_OUTPUT_X, listNodeToString(output))
+        val outputText = application.getString(STRING_OUTPUT_X, output?.let { listNodeToString(it) } ?: "null")
         return AnswerVO(inputText, outputText)
     }
 
-    private fun listNodeToString(listNode: ListNode?): String {
+    private fun listNodeToString(listNode: ListNode): String {
         val list = ArrayList<Int>()
         var temp: ListNode? = listNode
         do {

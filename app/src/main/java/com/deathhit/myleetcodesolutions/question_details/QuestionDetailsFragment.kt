@@ -90,11 +90,11 @@ class QuestionDetailsFragment : StateFragment<QuestionDetailsViewModel.State, Qu
     }
 
     override fun onRenderState(state: QuestionDetailsViewModel.State) {
-        state.statusCode.signForStatus(this)?.let { textCode!!.text = it }
-        state.statusDescription.signForStatus(this)?.let { textDescription!!.text = it }
-        state.statusInput.signForStatus(this)?.let { textInput!!.text = it }
-        state.statusOutput.signForStatus(this)?.let { textOutput!!.text = it }
-        state.statusTitle.signForStatus(this)?.let { textTitle!!.text = it }
+        state.statusCode.signForStatus(this)?.let { textCode?.text = it }
+        state.statusDescription.signForStatus(this)?.let { textDescription?.text = it }
+        state.statusInput.signForStatus(this)?.let { textInput?.text = it }
+        state.statusOutput.signForStatus(this)?.let { textOutput?.text = it }
+        state.statusTitle.signForStatus(this)?.let { textTitle?.text = it }
     }
 
     override fun onSaveInstanceState(outState: Bundle) {

@@ -60,7 +60,7 @@ class QuestionListFragment : StateFragment<QuestionListViewModel.State, Question
     }
 
     override fun onRenderState(state: QuestionListViewModel.State) {
-        state.statusQuestionList.signForStatus(this)?.let { adapter!!.submitList(it) }
+        state.statusQuestionList.signForStatus(this)?.let { adapter?.submitList(it) }
     }
 
     private fun createQuestionAdapter(): QuestionAdapter {

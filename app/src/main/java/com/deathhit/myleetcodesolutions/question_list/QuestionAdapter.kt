@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.deathhit.myleetcodesolutions.base.model.QuestionVO
 
-abstract class QuestionAdapter() : ListAdapter<QuestionVO, QuestionViewHolder>(COMPARATOR) {
+abstract class QuestionAdapter : ListAdapter<QuestionVO, QuestionViewHolder>(COMPARATOR) {
     companion object {
         private val COMPARATOR = object : DiffUtil.ItemCallback<QuestionVO>() {
             override fun areItemsTheSame(oldItem: QuestionVO, newItem: QuestionVO): Boolean =
@@ -26,7 +26,7 @@ abstract class QuestionAdapter() : ListAdapter<QuestionVO, QuestionViewHolder>(C
 
     override fun onBindViewHolder(holder: QuestionViewHolder, position: Int) {
         holder.item = getItem(position)
-        holder.item?.let { holder.textName.text = it.name }
+        holder.item?.let { holder.textName?.text = it.name }
     }
 
     abstract fun onItemClick(item: QuestionVO, pos: Int)
