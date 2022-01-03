@@ -25,8 +25,7 @@ abstract class QuestionAdapter : ListAdapter<QuestionVO, QuestionViewHolder>(COM
     }
 
     override fun onBindViewHolder(holder: QuestionViewHolder, position: Int) {
-        holder.item = getItem(position)
-        holder.item?.let { holder.textName.text = it.name }
+        holder.item = getItem(position)?.also { holder.textName.text = it.name }
     }
 
     abstract fun onItemClick(item: QuestionVO, pos: Int)
