@@ -19,7 +19,7 @@ class LongestSubstringWithoutRepeatingCharacters(application: Application) : Que
             R.string.longest_substring_without_repeating_characters_description
         private const val STRING_INPUT_X = R.string.common_input_x
         private const val STRING_OUTPUT_X = R.string.common_output_x
-        private const val STRING_S_X = R.string.longest_substring_without_repeating_characters_s_x
+        private const val STRING_S_X = R.string.common_s_x
     }
 
     override fun code(): Spanned = HtmlCompat.fromHtml(

@@ -48,6 +48,7 @@ class QuestionDetailsViewModel(application: Application) :
     private fun createQuestionModel(): QuestionModel {
         return when (questionVO!!.question) {
             Question.ADD_TWO_NUMBERS -> AddTwoNumbers(getApplication())
+            Question.LONGEST_PALINDROMIC_SUBSTRING -> LongestPalindromicSubstring(getApplication())
             Question.LONGEST_SUBSTRING_WITHOUT_REPEATING_CHARACTERS -> LongestSubstringWithoutRepeatingCharacters(
                 getApplication()
             )

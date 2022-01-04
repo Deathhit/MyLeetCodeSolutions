@@ -17,8 +17,8 @@ class MedianOfTwoSortedArrays(application: Application) : QuestionModel(applicat
         private const val STRING_CODE = R.string.median_of_two_sorted_arrays_code
         private const val STRING_DESCRIPTION = R.string.median_of_two_sorted_arrays_description
         private const val STRING_INPUT_X = R.string.common_input_x
-        private const val STRING_NUMBERS1_X = R.string.median_of_two_sorted_arrays_numbers1_x
-        private const val STRING_NUMBERS2_X = R.string.median_of_two_sorted_arrays_numbers2_x
+        private const val STRING_NUMBERS1_X = R.string.common_numbers1_x
+        private const val STRING_NUMBERS2_X = R.string.common_numbers2_x
         private const val STRING_OUTPUT_X = R.string.common_output_x
     }
 

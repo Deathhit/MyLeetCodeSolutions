@@ -21,14 +21,77 @@
     </string>
     <string name="add_two_numbers_description">You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order, and each of their nodes contains a single digit. Add the two numbers and return the sum as a linked list.
     You may assume the two numbers do not contain any leading zero, except the number 0 itself.</string>
-    <string name="add_two_numbers_l1_x">l1 = %s</string>
-    <string name="add_two_numbers_l2_x">l2 = %s</string>
-    <string name="add_two_numbers_title">Add Two Numbers</string>
 
     <!--Common-->
     <string name="common_input_x">Input:\n%s</string>
+    <string name="common_l1_x">l1 = %s</string>
+    <string name="common_l2_x">l2 = %s</string>
+    <string name="common_numbers_x">numbers = %s</string>
+    <string name="common_numbers1_x" tools:ignore="Typos">numbers1 = %s</string>
+    <string name="common_numbers2_x">numbers2 = %s</string>
     <string name="common_output_x">Output:\n%s</string>
     <string name="common_run">Run</string>
+    <string name="common_s_x">s = %s</string>
+    <string name="common_target_x">target = %s</string>
+
+    <!--Longest Palindromic Substring-->
+    <string name="longest_palindromic_substring_code">
+<![CDATA[
+<!DOCTYPE html>
+<p>&nbsp; &nbsp; fun longestPalindrome(s: String): String {</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; val fillChar = &apos;_&apos;</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; val filledStr = StringBuilder(s.length * 2 + 1).apply {</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; for (i in s.indices)</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; append(fillChar).append(s[i])</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; append(fillChar)</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; }</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; val radiusArray = Array(filledStr.length) { 0 }</p>
+<p><br></p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; var center = 0</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; var maxCenter = 0</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; var maxRadius = 0</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; var radius = 0</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; while (center &lt; filledStr.length) {</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; var nextRadius = radius + 1</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; while (center - nextRadius &gt;= 0</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &amp;&amp; center + nextRadius &lt; filledStr.length</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &amp;&amp; filledStr[center + nextRadius] == filledStr[center - nextRadius]</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ) {</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; radius = nextRadius</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; nextRadius++</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</p>
+<p><br></p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; radiusArray[center] = radius</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (radiusArray[center] &gt; maxRadius) {</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; maxCenter = center</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; maxRadius = radiusArray[center]</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</p>
+<p><br></p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; val middleCenter = center</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; val rightBound = center + radius</p>
+<p><br></p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; center++</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; radius = 0</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; while (center &lt;= rightBound) {</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; val leftCenter = middleCenter - (center - middleCenter)</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; val reach = center + radiusArray[leftCenter]</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (reach &lt; rightBound)</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; radiusArray[center] = radiusArray[leftCenter]</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; else if (reach &gt; rightBound)</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; radiusArray[center] = rightBound - center</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; else {</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; radius = rightBound - center</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; break</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; center++</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; }</p>
+<p><br></p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; return filledStr.substring(maxCenter - maxRadius, maxCenter + maxRadius).filter { it != fillChar }</p>
+<p>&nbsp; &nbsp; }</p>
+]]>
+    </string>
+    <string name="longest_palindromic_substring_description">Given a string s, return the longest palindromic substring in s.</string>
 
     <!--Longest Substring Without Repeating Characters-->
     <string name="longest_substring_without_repeating_characters_code">
@@ -51,9 +114,6 @@
     </string>
     <string name="longest_substring_without_repeating_characters_description">
         Given a string s, find the length of the longest substring without repeating characters.
-    </string>
-    <string name="longest_substring_without_repeating_characters_s_x">
-        s = %s
     </string>
 
     <!--Median Of Two Sorted Arrays-->
@@ -100,11 +160,10 @@
         Given two sorted arrays numbers1 and numbers2 of size m and n respectively, return the median of the two sorted arrays.
         The overall run time complexity should be O(log (m+n)).
     </string>
-    <string name="median_of_two_sorted_arrays_numbers1_x" tools:ignore="Typos">numbers1 = %s</string>
-    <string name="median_of_two_sorted_arrays_numbers2_x">numbers2 = %s</string>
 
     <!--QuestionVO-->
     <string name="question_vo_add_two_numbers">Add Two Numbers</string>
+    <string name="question_vo_longest_palindromic_substring">Longest Palindromic Substring</string>
     <string name="question_vo_longest_substring_without_repeating_characters">Longest Substring Without Repeating Characters</string>
     <string name="question_vo_median_of_two_sorted_arrays">Median Of Two Sorted Arrays</string>
     <string name="question_vo_two_sum">Two Sum</string>
@@ -132,7 +191,4 @@
     <string name="two_sum_description">Given an array of integers numbers and an integer target, return indices of the two numbers such that they add up to target.
 You may assume that each input would have exactly one solution, and you may not use the same element twice.
 You can return the answer in any order.</string>
-    <string name="two_sum_numbers_x">numbers = %s</string>
-    <string name="two_sum_target_x">target = %s</string>
-    <string name="two_sum_title">Two Sum</string>
 </resources>

@@ -16,8 +16,8 @@ class AddTwoNumbers(application: Application) : QuestionModel(application) {
         private const val STRING_CODE = R.string.add_two_numbers_code
         private const val STRING_DESCRIPTION = R.string.add_two_numbers_description
         private const val STRING_INPUT_X = R.string.common_input_x
-        private const val STRING_L1_X = R.string.add_two_numbers_l1_x
-        private const val STRING_L2_X = R.string.add_two_numbers_l2_x
+        private const val STRING_L1_X = R.string.common_l1_x
+        private const val STRING_L2_X = R.string.common_l2_x
         private const val STRING_OUTPUT_X = R.string.common_output_x
     }
 

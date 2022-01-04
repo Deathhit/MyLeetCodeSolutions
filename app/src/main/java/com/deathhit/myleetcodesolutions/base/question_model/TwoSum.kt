@@ -16,9 +16,9 @@ class TwoSum(application: Application) : QuestionModel(application) {
         private const val STRING_CODE = R.string.two_sum_code
         private const val STRING_DESCRIPTION = R.string.two_sum_description
         private const val STRING_INPUT_X = R.string.common_input_x
-        private const val STRING_NUMBERS_X = R.string.two_sum_numbers_x
+        private const val STRING_NUMBERS_X = R.string.common_numbers_x
         private const val STRING_OUTPUT_X = R.string.common_output_x
-        private const val STRING_TARGET_X = R.string.two_sum_target_x
+        private const val STRING_TARGET_X = R.string.common_target_x
     }
 
     override fun code(): Spanned = HtmlCompat.fromHtml(
