@@ -9,9 +9,9 @@ import kotlin.random.Random
 
 class TwoSum(application: Application) : QuestionModel(application) {
     companion object {
-        private const val MIN_LENGTH_OF_NUMBERS = 2
         private const val MAX_LENGTH_OF_NUMBERS = 10
         private const val MAX_VALUE_OF_NUMBERS = 100
+        private const val MIN_LENGTH_OF_NUMBERS = 2
 
         private const val STRING_CODE = R.string.two_sum_code
         private const val STRING_DESCRIPTION = R.string.two_sum_description

@@ -17,6 +17,7 @@ data class QuestionVO(val name: String, val question: Question) : Parcelable {
         private const val STRING_MEDIAN_OF_TWO_SORTED_ARRAYS =
             R.string.question_vo_median_of_two_sorted_arrays
         private const val STRING_TWO_SUM = R.string.question_vo_two_sum
+        private const val STRING_ZIGZAG_CONVERSION = R.string.question_vo_zigzag_conversion
 
         fun valueOf(context: Context, question: Question): QuestionVO {
             return when (question) {
@@ -39,6 +40,10 @@ data class QuestionVO(val name: String, val question: Question) : Parcelable {
                     ), question
                 )
                 Question.TWO_SUM -> QuestionVO(context.getString(STRING_TWO_SUM), question)
+                Question.ZIGZAG_CONVERSION -> QuestionVO(
+                    context.getString(STRING_ZIGZAG_CONVERSION),
+                    question
+                )
             }
         }
     }

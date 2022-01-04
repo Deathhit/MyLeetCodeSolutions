@@ -11,8 +11,8 @@ class LongestSubstringWithoutRepeatingCharacters(application: Application) : Que
     application
 ) {
     companion object {
-        private const val MIN_LENGTH_OF_S = 0
         private const val MAX_LENGTH_OF_S = 15
+        private const val MIN_LENGTH_OF_S = 0
 
         private const val STRING_CODE = R.string.longest_substring_without_repeating_characters_code
         private const val STRING_DESCRIPTION =

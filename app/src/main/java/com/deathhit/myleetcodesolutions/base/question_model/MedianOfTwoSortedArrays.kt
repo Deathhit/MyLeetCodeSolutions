@@ -9,10 +9,10 @@ import kotlin.random.Random
 
 class MedianOfTwoSortedArrays(application: Application) : QuestionModel(application) {
     companion object {
-        private const val MIN_LENGTH_OF_NUMBERS1 = 0
-        private const val MIN_LENGTH_OF_NUMBERS2 = 1
         private const val MAX_LENGTH_OF_NUMBERS = 5
         private const val MAX_VALUE_OF_NUMBERS = 9
+        private const val MIN_LENGTH_OF_NUMBERS1 = 0
+        private const val MIN_LENGTH_OF_NUMBERS2 = 1
 
         private const val STRING_CODE = R.string.median_of_two_sorted_arrays_code
         private const val STRING_DESCRIPTION = R.string.median_of_two_sorted_arrays_description

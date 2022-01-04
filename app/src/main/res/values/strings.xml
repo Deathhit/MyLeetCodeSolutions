@@ -26,6 +26,7 @@
     <string name="common_input_x">Input:\n%s</string>
     <string name="common_l1_x">l1 = %s</string>
     <string name="common_l2_x">l2 = %s</string>
+    <string name="common_num_rows_x">numRows = %s</string>
     <string name="common_numbers_x">numbers = %s</string>
     <string name="common_numbers1_x" tools:ignore="Typos">numbers1 = %s</string>
     <string name="common_numbers2_x">numbers2 = %s</string>
@@ -167,6 +168,7 @@
     <string name="question_vo_longest_substring_without_repeating_characters">Longest Substring Without Repeating Characters</string>
     <string name="question_vo_median_of_two_sorted_arrays">Median Of Two Sorted Arrays</string>
     <string name="question_vo_two_sum">Two Sum</string>
+    <string name="question_vo_zigzag_conversion">Zigzag Conversion</string>
 
     <!--Sample-->
     <string name="sample_text">Sample Text</string>
@@ -191,4 +193,36 @@
     <string name="two_sum_description">Given an array of integers numbers and an integer target, return indices of the two numbers such that they add up to target.
 You may assume that each input would have exactly one solution, and you may not use the same element twice.
 You can return the answer in any order.</string>
+
+    <!--Zigzag Conversion-->
+    <string name="zigzag_conversion_code">
+<![CDATA[
+<!DOCTYPE html>
+<p>&nbsp; &nbsp; fun convert(s: String, numRows: Int): String {</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; if (numRows &lt;= 1)</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; return s</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; val strBuilderArray = Array(numRows) { StringBuilder() }</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; s.forEachIndexed { index, char -&gt;&nbsp;</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; val row = evaluateRow(index, numRows)</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; strBuilderArray[row].append(char)</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; }</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp;return strBuilderArray.joinToString(&quot;&quot;)</p>
+<p>&nbsp; &nbsp; }</p>
+<p><br></p>
+<p>&nbsp; &nbsp; private fun evaluateRow(index: Int, numRows: Int): Int {</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; val cycle = 2 * numRows - 2</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; val cycleIndex = index % cycle</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; return if (cycleIndex / numRows == 0)</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; cycleIndex</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; else</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; cycle - cycleIndex</p>
+<p>&nbsp; &nbsp; }</p>
+]]>
+    </string>
+    <string name="zigzag_conversion_description">
+        The string "PAYPALISHIRING" is written in a zigzag pattern on a given number of rows, and then read line by line: "PAHNAPLSIIGYIR".
+        Write the code that will take a string and make this conversion given a number of rows:
+    </string>
 </resources>

@@ -9,9 +9,9 @@ import kotlin.random.Random
 
 class AddTwoNumbers(application: Application) : QuestionModel(application) {
     companion object {
-        private const val MIN_LENGTH_OF_LIST_NODES = 1
         private const val MAX_LENGTH_OF_LIST_NODES = 5
         private const val MAX_VALUE_OF_LIST_NODE = 9
+        private const val MIN_LENGTH_OF_LIST_NODES = 1
 
         private const val STRING_CODE = R.string.add_two_numbers_code
         private const val STRING_DESCRIPTION = R.string.add_two_numbers_description

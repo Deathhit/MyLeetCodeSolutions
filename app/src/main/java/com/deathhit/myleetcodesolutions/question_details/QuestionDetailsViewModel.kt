@@ -61,6 +61,7 @@ class QuestionDetailsViewModel(application: Application) :
             )
             Question.MEDIAN_OF_TWO_SORTED_ARRAYS -> MedianOfTwoSortedArrays(getApplication())
             Question.TWO_SUM -> TwoSum(getApplication())
+            Question.ZIGZAG_CONVERSION -> ZigzagConversion(getApplication())
         }
     }
 

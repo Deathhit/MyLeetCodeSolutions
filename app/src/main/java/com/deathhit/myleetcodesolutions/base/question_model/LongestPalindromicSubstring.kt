@@ -9,8 +9,8 @@ import kotlin.random.Random
 
 class LongestPalindromicSubstring(application: Application) : QuestionModel(application) {
     companion object {
-        private const val MIN_LENGTH_OF_S = 0
         private const val MAX_LENGTH_OF_S = 15
+        private const val MIN_LENGTH_OF_S = 0
 
         private const val STRING_CODE = R.string.longest_palindromic_substring_code
         private const val STRING_DESCRIPTION =
