@@ -10,5 +10,5 @@ abstract class QuestionModel(val application: Application) {
 
     protected abstract fun code(): Spanned
     protected abstract fun description(): String
-    abstract fun run(): AnswerVO
+    abstract suspend fun run(): AnswerVO
 }

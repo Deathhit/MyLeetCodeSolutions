@@ -29,7 +29,7 @@ class MedianOfTwoSortedArrays(application: Application) : QuestionModel(applicat
 
     override fun description(): String = application.getString(STRING_DESCRIPTION)
 
-    override fun run(): AnswerVO {
+    override suspend fun run(): AnswerVO {
         val numbers1 = generateNumbers1()
         val numbers2 = generateNumbers2()
         val inputText = application.getString(

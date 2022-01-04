@@ -32,7 +32,7 @@ class AddTwoNumbers(application: Application) : QuestionModel(application) {
 
     override fun description(): String = application.getString(STRING_DESCRIPTION)
 
-    override fun run(): AnswerVO {
+    override suspend fun run(): AnswerVO {
         val l1 = generateListNode()
         val l2 = generateListNode()
         val inputText = application.getString(

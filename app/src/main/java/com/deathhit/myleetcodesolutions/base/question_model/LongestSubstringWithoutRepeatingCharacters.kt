@@ -29,7 +29,7 @@ class LongestSubstringWithoutRepeatingCharacters(application: Application) : Que
 
     override fun description(): String = application.getString(STRING_DESCRIPTION)
 
-    override fun run(): AnswerVO {
+    override suspend fun run(): AnswerVO {
         val s = generateS()
         val inputText = application.getString(STRING_INPUT_X, application.getString(STRING_S_X, s))
         val output = lengthOfLongestSubstring(s)
