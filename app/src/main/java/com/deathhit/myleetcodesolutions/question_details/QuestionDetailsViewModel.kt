@@ -26,10 +26,10 @@ class QuestionDetailsViewModel(application: Application) :
     private val statusInput = StatePackage<String>()
     private val statusOutput = StatePackage<String>()
     private val statusTitle = StatePackage<String>()
-
-    var jobRun: Job? = null
-
+    
     var questionVO: QuestionVO? = null
+
+    private var jobRun: Job? = null
 
     override fun createState(): State =
         State(statusCode, statusDescription, statusInput, statusOutput, statusTitle)
