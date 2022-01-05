@@ -6,9 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.deathhit.framework.StatePackage
 import com.deathhit.framework.StateViewModel
 import com.deathhit.framework.Status
-import com.deathhit.myleetcodesolutions.base.enum_type.Question
 import com.deathhit.myleetcodesolutions.base.model.QuestionVO
-import com.deathhit.myleetcodesolutions.base.question_model.*
 import kotlinx.coroutines.*
 
 class QuestionDetailsViewModel(application: Application) :
@@ -21,7 +19,7 @@ class QuestionDetailsViewModel(application: Application) :
         val statusTitle: Status<String>
     )
 
-    private val questionModel by lazy { createQuestionModel() }
+    private val questionModel by lazy { questionVO!!.createQuestionModel(getApplication()) }
 
     private val statusCode = StatePackage<Spanned>()
     private val statusDescription = StatePackage<String>()
@@ -49,19 +47,6 @@ class QuestionDetailsViewModel(application: Application) :
             statusInput.content = answerVO.inputText
             statusOutput.content = answerVO.outputText
             postState()
-        }
-    }
-
-    private fun createQuestionModel(): QuestionModel {
-        return when (questionVO!!.question) {
-            Question.ADD_TWO_NUMBERS -> AddTwoNumbers(getApplication())
-            Question.LONGEST_PALINDROMIC_SUBSTRING -> LongestPalindromicSubstring(getApplication())
-            Question.LONGEST_SUBSTRING_WITHOUT_REPEATING_CHARACTERS -> LongestSubstringWithoutRepeatingCharacters(
-                getApplication()
-            )
-            Question.MEDIAN_OF_TWO_SORTED_ARRAYS -> MedianOfTwoSortedArrays(getApplication())
-            Question.TWO_SUM -> TwoSum(getApplication())
-            Question.ZIGZAG_CONVERSION -> ZigzagConversion(getApplication())
         }
     }
 

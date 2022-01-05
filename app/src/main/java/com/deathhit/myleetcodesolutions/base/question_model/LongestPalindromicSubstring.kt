@@ -1,13 +1,13 @@
 package com.deathhit.myleetcodesolutions.base.question_model
 
-import android.app.Application
+import android.content.Context
 import android.text.Spanned
 import androidx.core.text.HtmlCompat
 import com.deathhit.myleetcodesolutions.R
 import com.deathhit.myleetcodesolutions.base.model.AnswerVO
 import kotlin.random.Random
 
-class LongestPalindromicSubstring(application: Application) : QuestionModel(application) {
+class LongestPalindromicSubstring(context: Context) : QuestionModel(context) {
     companion object {
         private const val MAX_LENGTH_OF_S = 15
         private const val MIN_LENGTH_OF_S = 0
@@ -21,17 +21,17 @@ class LongestPalindromicSubstring(application: Application) : QuestionModel(appl
     }
 
     override fun code(): Spanned = HtmlCompat.fromHtml(
-        application.getString(STRING_CODE),
+        context.getString(STRING_CODE),
         HtmlCompat.FROM_HTML_MODE_COMPACT
     )
 
-    override fun description(): String = application.getString(STRING_DESCRIPTION)
+    override fun description(): String = context.getString(STRING_DESCRIPTION)
 
     override suspend fun run(): AnswerVO {
         val s = generateS()
-        val inputText = application.getString(STRING_INPUT_X, application.getString(STRING_S_X, s))
+        val inputText = context.getString(STRING_INPUT_X, context.getString(STRING_S_X, s))
         val output = longestPalindrome(s)
-        val outputText = application.getString(STRING_OUTPUT_X, output)
+        val outputText = context.getString(STRING_OUTPUT_X, output)
         return AnswerVO(inputText, outputText)
     }
 

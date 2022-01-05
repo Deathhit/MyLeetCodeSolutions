@@ -1,13 +1,13 @@
 package com.deathhit.myleetcodesolutions.base.question_model
 
-import android.app.Application
+import android.content.Context
 import android.text.Spanned
 import androidx.core.text.HtmlCompat
 import com.deathhit.myleetcodesolutions.R
 import com.deathhit.myleetcodesolutions.base.model.AnswerVO
 import kotlin.random.Random
 
-class AddTwoNumbers(application: Application) : QuestionModel(application) {
+class AddTwoNumbers(context: Context) : QuestionModel(context) {
     companion object {
         private const val MAX_LENGTH_OF_LIST_NODES = 5
         private const val MAX_VALUE_OF_LIST_NODE = 9
@@ -26,26 +26,26 @@ class AddTwoNumbers(application: Application) : QuestionModel(application) {
     }
 
     override fun code(): Spanned = HtmlCompat.fromHtml(
-        application.getString(STRING_CODE),
+        context.getString(STRING_CODE),
         HtmlCompat.FROM_HTML_MODE_COMPACT
     )
 
-    override fun description(): String = application.getString(STRING_DESCRIPTION)
+    override fun description(): String = context.getString(STRING_DESCRIPTION)
 
     override suspend fun run(): AnswerVO {
         val l1 = generateListNode()
         val l2 = generateListNode()
-        val inputText = application.getString(
+        val inputText = context.getString(
             STRING_INPUT_X,
-            application.getString(
+            context.getString(
                 STRING_L1_X,
                 listNodeToString(l1)
-            ) + ", " + application.getString(
+            ) + ", " + context.getString(
                 STRING_L2_X, listNodeToString(l2)
             )
         )
         val output = addTwoNumbers(l1, l2)
-        val outputText = application.getString(STRING_OUTPUT_X, output?.let { listNodeToString(it) } ?: "null")
+        val outputText = context.getString(STRING_OUTPUT_X, output?.let { listNodeToString(it) } ?: "null")
         return AnswerVO(inputText, outputText)
     }
 

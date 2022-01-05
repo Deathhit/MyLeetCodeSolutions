@@ -1,10 +1,10 @@
 package com.deathhit.myleetcodesolutions.base.question_model
 
-import android.app.Application
+import android.content.Context
 import android.text.Spanned
 import com.deathhit.myleetcodesolutions.base.model.AnswerVO
 
-abstract class QuestionModel(val application: Application) {
+abstract class QuestionModel(val context: Context) {
     val code by lazy { code() }
     val description by lazy { description() }
 

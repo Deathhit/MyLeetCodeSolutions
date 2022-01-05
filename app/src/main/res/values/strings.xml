@@ -34,6 +34,7 @@
     <string name="common_run">Run</string>
     <string name="common_s_x">s = %s</string>
     <string name="common_target_x">target = %s</string>
+    <string name="common_x_x">x = %s</string>
 
     <!--Longest Palindromic Substring-->
     <string name="longest_palindromic_substring_code">
@@ -167,8 +168,33 @@
     <string name="question_vo_longest_palindromic_substring">Longest Palindromic Substring</string>
     <string name="question_vo_longest_substring_without_repeating_characters">Longest Substring Without Repeating Characters</string>
     <string name="question_vo_median_of_two_sorted_arrays">Median Of Two Sorted Arrays</string>
+    <string name="question_vo_reverse_integer">Reverse Integer</string>
     <string name="question_vo_two_sum">Two Sum</string>
     <string name="question_vo_zigzag_conversion">Zigzag Conversion</string>
+
+    <!--Reverse Integer-->
+    <string name="reverse_integer_code">
+<![CDATA[
+<!DOCTYPE html>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; val checkPoint = 9 &nbsp;//Number of digits -1 of Int.MAX_VALUE and Int.MIN_VALUE</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; var length = 0</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; var result = 0</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; var varX = x</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; while (varX != 0) {</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; val digit = varX % 10</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (++length &gt; checkPoint</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &amp;&amp; ((result &lt; 0 &amp;&amp; result &lt; (Int.MIN_VALUE - digit) / 10)</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; || (result &gt; 0 &amp;&amp; result &gt; (Int.MAX_VALUE - digit) / 10))</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; )</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; return 0</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; result = result * 10 + digit</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; varX /= 10</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; }</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; return result</p>
+]]>
+    </string>
+    <string name="reverse_integer_description">Given a signed 32-bit integer x, return x with its digits reversed. If reversing x causes the value to go outside the signed 32-bit integer range [-231, 231 - 1], then return 0.
+        \nAssume the environment does not allow you to store 64-bit integers (signed or unsigned).</string>
 
     <!--Sample-->
     <string name="sample_text">Sample Text</string>

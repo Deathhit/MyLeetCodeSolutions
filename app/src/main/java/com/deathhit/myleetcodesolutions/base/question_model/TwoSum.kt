@@ -1,13 +1,13 @@
 package com.deathhit.myleetcodesolutions.base.question_model
 
-import android.app.Application
+import android.content.Context
 import android.text.Spanned
 import androidx.core.text.HtmlCompat
 import com.deathhit.myleetcodesolutions.R
 import com.deathhit.myleetcodesolutions.base.model.AnswerVO
 import kotlin.random.Random
 
-class TwoSum(application: Application) : QuestionModel(application) {
+class TwoSum(context: Context) : QuestionModel(context) {
     companion object {
         private const val MAX_LENGTH_OF_NUMBERS = 10
         private const val MAX_VALUE_OF_NUMBERS = 100
@@ -22,26 +22,26 @@ class TwoSum(application: Application) : QuestionModel(application) {
     }
 
     override fun code(): Spanned = HtmlCompat.fromHtml(
-        application.getString(STRING_CODE),
+        context.getString(STRING_CODE),
         HtmlCompat.FROM_HTML_MODE_COMPACT
     )
 
-    override fun description(): String = application.getString(STRING_DESCRIPTION)
+    override fun description(): String = context.getString(STRING_DESCRIPTION)
 
     override suspend fun run(): AnswerVO {
         val numbers = generateNumbers()
         val target = generateTarget(numbers)
-        val inputText = application.getString(
+        val inputText = context.getString(
             STRING_INPUT_X,
-            application.getString(
+            context.getString(
                 STRING_NUMBERS_X,
                 numbers.toList().toString()
-            ) + ", " + application.getString(
+            ) + ", " + context.getString(
                 STRING_TARGET_X, target.toString()
             )
         )
         val output = twoSum(numbers, target)
-        val outputText = application.getString(STRING_OUTPUT_X, output.toList().toString())
+        val outputText = context.getString(STRING_OUTPUT_X, output.toList().toString())
         return AnswerVO(inputText, outputText)
     }
 

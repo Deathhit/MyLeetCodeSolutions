@@ -1,13 +1,13 @@
 package com.deathhit.myleetcodesolutions.base.question_model
 
-import android.app.Application
+import android.content.Context
 import android.text.Spanned
 import androidx.core.text.HtmlCompat
 import com.deathhit.myleetcodesolutions.R
 import com.deathhit.myleetcodesolutions.base.model.AnswerVO
 import kotlin.random.Random
 
-class MedianOfTwoSortedArrays(application: Application) : QuestionModel(application) {
+class MedianOfTwoSortedArrays(context: Context) : QuestionModel(context) {
     companion object {
         private const val MAX_LENGTH_OF_NUMBERS = 5
         private const val MAX_VALUE_OF_NUMBERS = 9
@@ -23,24 +23,24 @@ class MedianOfTwoSortedArrays(application: Application) : QuestionModel(applicat
     }
 
     override fun code(): Spanned = HtmlCompat.fromHtml(
-        application.getString(STRING_CODE),
+        context.getString(STRING_CODE),
         HtmlCompat.FROM_HTML_MODE_COMPACT
     )
 
-    override fun description(): String = application.getString(STRING_DESCRIPTION)
+    override fun description(): String = context.getString(STRING_DESCRIPTION)
 
     override suspend fun run(): AnswerVO {
         val numbers1 = generateNumbers1()
         val numbers2 = generateNumbers2()
-        val inputText = application.getString(
-            STRING_INPUT_X, application.getString(
+        val inputText = context.getString(
+            STRING_INPUT_X, context.getString(
                 STRING_NUMBERS1_X, numbers1.toList().toString()
-            ) + ", " + application.getString(
+            ) + ", " + context.getString(
                 STRING_NUMBERS2_X, numbers2.toList().toString()
             )
         )
         val output = findMedianSortedArrays(numbers1, numbers2)
-        val outputText = application.getString(STRING_OUTPUT_X, output.toString())
+        val outputText = context.getString(STRING_OUTPUT_X, output.toString())
         return AnswerVO(inputText, outputText)
     }
 
