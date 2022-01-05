@@ -169,6 +169,7 @@
     <string name="question_vo_longest_substring_without_repeating_characters">Longest Substring Without Repeating Characters</string>
     <string name="question_vo_median_of_two_sorted_arrays">Median Of Two Sorted Arrays</string>
     <string name="question_vo_reverse_integer">Reverse Integer</string>
+    <string name="question_vo_string_to_integer_atoi">String To Integer Atoi</string>
     <string name="question_vo_two_sum">Two Sum</string>
     <string name="question_vo_zigzag_conversion">Zigzag Conversion</string>
 
@@ -176,6 +177,7 @@
     <string name="reverse_integer_code">
 <![CDATA[
 <!DOCTYPE html>
+<p>&nbsp; &nbsp; fun reverse(x: Int): Int {</p>
 <p>&nbsp; &nbsp; &nbsp; &nbsp; val checkPoint = 9 &nbsp;//Number of digits -1 of Int.MAX_VALUE and Int.MIN_VALUE</p>
 <p>&nbsp; &nbsp; &nbsp; &nbsp; var length = 0</p>
 <p>&nbsp; &nbsp; &nbsp; &nbsp; var result = 0</p>
@@ -191,6 +193,7 @@
 <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; varX /= 10</p>
 <p>&nbsp; &nbsp; &nbsp; &nbsp; }</p>
 <p>&nbsp; &nbsp; &nbsp; &nbsp; return result</p>
+<p>&nbsp; &nbsp; }</p>
 ]]>
     </string>
     <string name="reverse_integer_description">Given a signed 32-bit integer x, return x with its digits reversed. If reversing x causes the value to go outside the signed 32-bit integer range [-231, 231 - 1], then return 0.
@@ -198,6 +201,47 @@
 
     <!--Sample-->
     <string name="sample_text">Sample Text</string>
+
+    <!--String To Integer Atoi-->
+    <string name="string_to_integer_atoi_code">
+<![CDATA[
+<!DOCTYPE html>
+<p>&nbsp; &nbsp; fun myAtoi(s: String): Int {</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; var pointer = s.indexOfFirst { it != &apos; &apos; }</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; if (pointer == -1)</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; return 0</p>
+<p><br></p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; var factor = 1</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; when {</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; s[pointer] == &apos;-&apos; -&gt; {</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; factor = -1</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; pointer++</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; s[pointer] == &apos;+&apos; -&gt;</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; pointer++</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; }</p>
+<p><br></p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; val firstDigitPointer = pointer</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; var result = 0</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; while (pointer &lt; s.length) {</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (!s[pointer].isDigit())</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; return result</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; val digit = s[pointer].toString().toInt() * factor</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (pointer - firstDigitPointer + 1 &gt; 9) { &nbsp; &nbsp;</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; //9 is the number of digits - 1 of Int.MAX_VALUE and Int.MIN_VALUE</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (result &lt; 0 &amp;&amp; result &lt; (Int.MIN_VALUE - digit) / 10)</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; return Int.MIN_VALUE</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; else if (result &gt; 0 &amp;&amp; result &gt; (Int.MAX_VALUE - digit) / 10)</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; return Int.MAX_VALUE</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; result = result * 10 + digit</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; pointer++</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; }</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; return result</p>
+<p>&nbsp; &nbsp; }</p>
+]]>
+    </string>
+    <string name="string_to_integer_atoi_description">Implement the myAtoi(string s) function, which converts a string to a 32-bit signed integer (similar to C and C++ atoi function).</string>
 
     <!--Two Sum-->
     <string name="two_sum_code">

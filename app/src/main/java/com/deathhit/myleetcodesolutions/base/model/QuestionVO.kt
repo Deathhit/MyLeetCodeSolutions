@@ -18,6 +18,8 @@ data class QuestionVO(val name: String, val question: Question) : Parcelable {
         private const val STRING_MEDIAN_OF_TWO_SORTED_ARRAYS =
             R.string.question_vo_median_of_two_sorted_arrays
         private const val STRING_REVERSE_INTEGER = R.string.question_vo_reverse_integer
+        private const val STRING_STRING_TO_INTEGER_ATOI =
+            R.string.question_vo_string_to_integer_atoi
         private const val STRING_TWO_SUM = R.string.question_vo_two_sum
         private const val STRING_ZIGZAG_CONVERSION = R.string.question_vo_zigzag_conversion
 
@@ -32,18 +34,19 @@ data class QuestionVO(val name: String, val question: Question) : Parcelable {
                     question
                 )
                 Question.LONGEST_SUBSTRING_WITHOUT_REPEATING_CHARACTERS -> QuestionVO(
-                    context.getString(
-                        STRING_LONGEST_SUBSTRING_WITHOUT_REPEATING_CHARACTERS
-                    ), question
+                    context.getString(STRING_LONGEST_SUBSTRING_WITHOUT_REPEATING_CHARACTERS),
+                    question
                 )
                 Question.MEDIAN_OF_TWO_SORTED_ARRAYS -> QuestionVO(
-                    context.getString(
-                        STRING_MEDIAN_OF_TWO_SORTED_ARRAYS
-                    ), question
+                    context.getString(STRING_MEDIAN_OF_TWO_SORTED_ARRAYS),
+                    question
                 )
                 Question.REVERSE_INTEGER -> QuestionVO(
                     context.getString(STRING_REVERSE_INTEGER),
                     question
+                )
+                Question.STRING_TO_INTEGER_ATOI -> QuestionVO(
+                    context.getString(STRING_STRING_TO_INTEGER_ATOI), question
                 )
                 Question.TWO_SUM -> QuestionVO(context.getString(STRING_TWO_SUM), question)
                 Question.ZIGZAG_CONVERSION -> QuestionVO(
@@ -63,6 +66,7 @@ data class QuestionVO(val name: String, val question: Question) : Parcelable {
             )
             Question.MEDIAN_OF_TWO_SORTED_ARRAYS -> MedianOfTwoSortedArrays(context)
             Question.REVERSE_INTEGER -> ReverseInteger(context)
+            Question.STRING_TO_INTEGER_ATOI -> StringToIntegerAtoi(context)
             Question.TWO_SUM -> TwoSum(context)
             Question.ZIGZAG_CONVERSION -> ZigzagConversion(context)
         }
