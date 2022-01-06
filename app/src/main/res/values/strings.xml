@@ -19,8 +19,10 @@
 <p>&#160; &#160; }</p>
 ]]>
     </string>
-    <string name="add_two_numbers_description">You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order, and each of their nodes contains a single digit. Add the two numbers and return the sum as a linked list.
-    You may assume the two numbers do not contain any leading zero, except the number 0 itself.</string>
+    <string name="add_two_numbers_description">
+        You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order, and each of their nodes contains a single digit. Add the two numbers and return the sum as a linked list.
+        \n\nYou may assume the two numbers do not contain any leading zero, except the number 0 itself.
+    </string>
 
     <!--Common-->
     <string name="common_input_x">Input:\n%s</string>
@@ -93,7 +95,9 @@
 <p>&nbsp; &nbsp; }</p>
 ]]>
     </string>
-    <string name="longest_palindromic_substring_description">Given a string s, return the longest palindromic substring in s.</string>
+    <string name="longest_palindromic_substring_description">
+        Given a string s, return the longest palindromic substring in s.
+    </string>
 
     <!--Longest Substring Without Repeating Characters-->
     <string name="longest_substring_without_repeating_characters_code">
@@ -159,8 +163,8 @@
 ]]>
     </string>
     <string name="median_of_two_sorted_arrays_description">
-        Given two sorted arrays numbers1 and numbers2 of size m and n respectively, return the median of the two sorted arrays.
-        The overall run time complexity should be O(log (m+n)).
+        Given two sorted arrays nums1 and nums2 of size m and n respectively, return the median of the two sorted arrays.
+        \n\nThe overall run time complexity should be O(log (m+n)).
     </string>
 
     <!--QuestionVO-->
@@ -196,8 +200,10 @@
 <p>&nbsp; &nbsp; }</p>
 ]]>
     </string>
-    <string name="reverse_integer_description">Given a signed 32-bit integer x, return x with its digits reversed. If reversing x causes the value to go outside the signed 32-bit integer range [-231, 231 - 1], then return 0.
-        \nAssume the environment does not allow you to store 64-bit integers (signed or unsigned).</string>
+    <string name="reverse_integer_description">
+        Given a signed 32-bit integer x, return x with its digits reversed. If reversing x causes the value to go outside the signed 32-bit integer range [-231, 231 - 1], then return 0.
+        \n\nAssume the environment does not allow you to store 64-bit integers (signed or unsigned).
+    </string>
 
     <!--Sample-->
     <string name="sample_text">Sample Text</string>
@@ -241,7 +247,19 @@
 <p>&nbsp; &nbsp; }</p>
 ]]>
     </string>
-    <string name="string_to_integer_atoi_description">Implement the myAtoi(string s) function, which converts a string to a 32-bit signed integer (similar to C and C++ atoi function).</string>
+    <string name="string_to_integer_atoi_description">
+        Implement the myAtoi(string s) function, which converts a string to a 32-bit signed integer (similar to C/C++ atoi function).
+        \n\nThe algorithm for myAtoi(string s) is as follows:
+        \n\nRead in and ignore any leading whitespace.
+        \n\nCheck if the next character (if not already at the end of the string) is _ or +. Read this character in if it is either. This determines if the final result is negative or positive respectively. Assume the result is positive if neither is present.
+        \n\nRead in next the characters until the next non-digit character or the end of the input is reached. The rest of the string is ignored.
+        \n\nConvert these digits into an integer. If no digits were read, then the integer is 0. Change the sign as necessary (from step 2).
+        \n\nIf the integer is out of the 32-bit signed integer range [-231, 231 - 1], then clamp the integer so that it remains in the range. Specifically, integers less than -231 should be clamped to -231, and integers greater than 231 - 1 should be clamped to 231 - 1.
+        \n\nReturn the integer as the final result.
+        \n\nNote:
+        \nOnly the space character is considered a whitespace character.
+        \nDo not ignore any characters other than the leading whitespace or the rest of the string after the digits.
+    </string>
 
     <!--Two Sum-->
     <string name="two_sum_code">
@@ -260,9 +278,11 @@
 <p>&#160; &#160; }</p>
 ]]>
     </string>
-    <string name="two_sum_description">Given an array of integers numbers and an integer target, return indices of the two numbers such that they add up to target.
-You may assume that each input would have exactly one solution, and you may not use the same element twice.
-You can return the answer in any order.</string>
+    <string name="two_sum_description">
+        Given an array of integers numbers and an integer target, return indices of the two numbers such that they add up to target.
+        \n\nYou may assume that each input would have exactly one solution, and you may not use the same element twice.
+        \n\nYou can return the answer in any order.
+    </string>
 
     <!--Zigzag Conversion-->
     <string name="zigzag_conversion_code">
@@ -292,7 +312,11 @@ You can return the answer in any order.</string>
 ]]>
     </string>
     <string name="zigzag_conversion_description">
-        The string "PAYPALISHIRING" is written in a zigzag pattern on a given number of rows, and then read line by line: "PAHNAPLSIIGYIR".
-        Write the code that will take a string and make this conversion given a number of rows:
+        The string "PAYPALISHIRING" is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)
+        \n\nP   A   H   N
+        \nA P L S I I G
+        \nY   I   R
+        \nAnd then read line by line: "PAHNAPLSIIGYIR"
+        \n\nWrite the code that will take a string and make this conversion given a number of rows:
     </string>
 </resources>

@@ -3,8 +3,9 @@ package com.deathhit.myleetcodesolutions.base.model
 import android.content.Context
 import android.os.Parcelable
 import com.deathhit.myleetcodesolutions.R
+import com.deathhit.myleetcodesolutions.base.QuestionModel
 import com.deathhit.myleetcodesolutions.base.enum_type.Question
-import com.deathhit.myleetcodesolutions.base.question_model.*
+import com.deathhit.myleetcodesolutions.base.question_model_imp.*
 import kotlinx.parcelize.Parcelize
 
 @Parcelize

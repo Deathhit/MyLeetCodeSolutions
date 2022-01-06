@@ -1,9 +1,10 @@
-package com.deathhit.myleetcodesolutions.base.question_model
+package com.deathhit.myleetcodesolutions.base.question_model_imp
 
 import android.content.Context
 import android.text.Spanned
 import androidx.core.text.HtmlCompat
 import com.deathhit.myleetcodesolutions.R
+import com.deathhit.myleetcodesolutions.base.QuestionModel
 import com.deathhit.myleetcodesolutions.base.model.AnswerVO
 import kotlin.random.Random
 

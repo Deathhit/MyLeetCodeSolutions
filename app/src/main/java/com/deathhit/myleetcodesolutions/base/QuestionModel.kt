@@ -1,4 +1,4 @@
-package com.deathhit.myleetcodesolutions.base.question_model
+package com.deathhit.myleetcodesolutions.base
 
 import android.content.Context
 import android.text.Spanned
