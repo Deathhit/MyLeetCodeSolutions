@@ -18,6 +18,7 @@ data class QuestionVO(val name: String, val question: Question) : Parcelable {
             R.string.question_vo_longest_substring_without_repeating_characters
         private const val STRING_MEDIAN_OF_TWO_SORTED_ARRAYS =
             R.string.question_vo_median_of_two_sorted_arrays
+        private const val STRING_PALINDROME_NUMBER = R.string.question_vo_palindrome_number
         private const val STRING_REVERSE_INTEGER = R.string.question_vo_reverse_integer
         private const val STRING_STRING_TO_INTEGER_ATOI =
             R.string.question_vo_string_to_integer_atoi
@@ -40,6 +41,10 @@ data class QuestionVO(val name: String, val question: Question) : Parcelable {
                 )
                 Question.MEDIAN_OF_TWO_SORTED_ARRAYS -> QuestionVO(
                     context.getString(STRING_MEDIAN_OF_TWO_SORTED_ARRAYS),
+                    question
+                )
+                Question.PALINDROME_NUMBER -> QuestionVO(
+                    context.getString(STRING_PALINDROME_NUMBER),
                     question
                 )
                 Question.REVERSE_INTEGER -> QuestionVO(
@@ -66,6 +71,7 @@ data class QuestionVO(val name: String, val question: Question) : Parcelable {
                 context
             )
             Question.MEDIAN_OF_TWO_SORTED_ARRAYS -> MedianOfTwoSortedArrays(context)
+            Question.PALINDROME_NUMBER -> PalindromeNumber(context)
             Question.REVERSE_INTEGER -> ReverseInteger(context)
             Question.STRING_TO_INTEGER_ATOI -> StringToIntegerAtoi(context)
             Question.TWO_SUM -> TwoSum(context)

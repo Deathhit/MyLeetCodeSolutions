@@ -163,7 +163,7 @@
 ]]>
     </string>
     <string name="median_of_two_sorted_arrays_description">
-        Given two sorted arrays nums1 and nums2 of size m and n respectively, return the median of the two sorted arrays.
+        Given two sorted arrays numbers1 and numbers2 of size m and n respectively, return the median of the two sorted arrays.
         \n\nThe overall run time complexity should be O(log (m+n)).
     </string>
 
@@ -172,10 +172,33 @@
     <string name="question_vo_longest_palindromic_substring">Longest Palindromic Substring</string>
     <string name="question_vo_longest_substring_without_repeating_characters">Longest Substring Without Repeating Characters</string>
     <string name="question_vo_median_of_two_sorted_arrays">Median Of Two Sorted Arrays</string>
+    <string name="question_vo_palindrome_number">Palindrome Number</string>
     <string name="question_vo_reverse_integer">Reverse Integer</string>
     <string name="question_vo_string_to_integer_atoi">String To Integer Atoi</string>
     <string name="question_vo_two_sum">Two Sum</string>
     <string name="question_vo_zigzag_conversion">Zigzag Conversion</string>
+
+    <!--Palindrome Number-->
+    <string name="palindrome_number_code">
+        <![CDATA[
+        <!DOCTYPE html>
+        <p>&nbsp; &nbsp; fun isPalindrome(x: Int): Boolean {</p>
+        <p>&nbsp; &nbsp; &nbsp; &nbsp; var reversedX: Long = 0</p>
+        <p>&nbsp; &nbsp; &nbsp; &nbsp; var varX = x</p>
+        <p>&nbsp; &nbsp; &nbsp; &nbsp; while (varX &gt; 0) {</p>
+        <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; val remainder = varX % 10</p>
+        <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; reversedX = reversedX * 10 + remainder</p>
+        <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; varX /= 10</p>
+        <p>&nbsp; &nbsp; &nbsp; &nbsp; }</p>
+        <p>&nbsp; &nbsp; &nbsp; &nbsp; return x.toLong() == reversedX</p>
+        <p>&nbsp; &nbsp; }</p>
+        ]]>
+    </string>
+    <string name="palindrome_number_description">
+        Given an integer x, return true if x is palindrome integer.
+        \n\nAn integer is a palindrome when it reads the same backward as forward.
+        \n\nSolve it without converting the integer to a string.
+    </string>
 
     <!--Reverse Integer-->
     <string name="reverse_integer_code">
