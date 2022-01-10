@@ -33,6 +33,7 @@
     <string name="common_numbers1_x" tools:ignore="Typos">numbers1 = %s</string>
     <string name="common_numbers2_x">numbers2 = %s</string>
     <string name="common_output_x">Output:\n%s</string>
+    <string name="common_p_x">p = %s</string>
     <string name="common_run">Run</string>
     <string name="common_s_x">s = %s</string>
     <string name="common_target_x">target = %s</string>
@@ -173,6 +174,7 @@
     <string name="question_vo_longest_substring_without_repeating_characters">Longest Substring Without Repeating Characters</string>
     <string name="question_vo_median_of_two_sorted_arrays">Median Of Two Sorted Arrays</string>
     <string name="question_vo_palindrome_number">Palindrome Number</string>
+    <string name="question_vo_regular_expression_matching">Regular Expression Matching</string>
     <string name="question_vo_reverse_integer">Reverse Integer</string>
     <string name="question_vo_string_to_integer_atoi">String To Integer Atoi</string>
     <string name="question_vo_two_sum">Two Sum</string>
@@ -198,6 +200,45 @@
         Given an integer x, return true if x is palindrome integer.
         \n\nAn integer is a palindrome when it reads the same backward as forward.
         \n\nSolve it without converting the integer to a string.
+    </string>
+
+    <!--Regular Expression Matching-->
+    <string name="regular_expression_matching_code">
+        <![CDATA[
+        <!DOCTYPE html>
+        <p>&nbsp; &nbsp; fun isMatch(s: String, p: String): Boolean {</p>
+        <p>&nbsp; &nbsp; &nbsp; &nbsp; if (s.isNotEmpty() &amp;&amp; p.isEmpty())</p>
+        <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; return false</p>
+        <p><br></p>
+        <p>&nbsp; &nbsp; &nbsp; &nbsp; val dp = Array(s.length + 1) { BooleanArray(p.length + 1) }</p>
+        <p>&nbsp; &nbsp; &nbsp; &nbsp; dp[0][0] = true</p>
+        <p><br></p>
+        <p>&nbsp; &nbsp; &nbsp; &nbsp; for (i in 1 until p.length + 1)</p>
+        <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (p[i - 1] == &apos;*&apos;)</p>
+        <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; dp[0][i] = dp[0][i - 2]</p>
+        <p><br></p>
+        <p>&nbsp; &nbsp; &nbsp; &nbsp; for (i in 1 until s.length + 1) {</p>
+        <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; for (j in 1 until p.length + 1) {</p>
+        <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (s[i - 1] == p[j - 1] || p[j - 1] == &apos;.&apos;)</p>
+        <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; dp[i][j] = dp[i - 1][j - 1]</p>
+        <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; else if (p[j - 1] == &apos;*&apos;) {</p>
+        <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (s[i - 1] == p[j - 2] || p[j - 2] == &apos;.&apos;)</p>
+        <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; dp[i][j] = dp[i - 1][j]</p>
+        <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; dp[i][j] = dp[i][j] || dp[i][j - 2]</p>
+        <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</p>
+        <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</p>
+        <p>&nbsp; &nbsp; &nbsp; &nbsp; }</p>
+        <p><br></p>
+        <p>&nbsp; &nbsp; &nbsp; &nbsp; return dp[s.length][p.length]</p>
+        <p>&nbsp; &nbsp; }</p>
+        ]]>
+    </string>
+
+    <string name="regular_expression_matching_description">
+        Given an input string s and a pattern p, implement regular expression matching with support for \'.\' and \'*\' where:
+        \n\n\'.\' Matches any single character.​​​​
+        \n\'*\' Matches zero or more of the preceding element.
+        \n\nThe matching should cover the entire input string (not partial).
     </string>
 
     <!--Reverse Integer-->

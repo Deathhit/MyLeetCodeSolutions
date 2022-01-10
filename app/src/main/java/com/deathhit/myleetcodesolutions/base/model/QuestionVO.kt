@@ -19,6 +19,7 @@ data class QuestionVO(val name: String, val question: Question) : Parcelable {
         private const val STRING_MEDIAN_OF_TWO_SORTED_ARRAYS =
             R.string.question_vo_median_of_two_sorted_arrays
         private const val STRING_PALINDROME_NUMBER = R.string.question_vo_palindrome_number
+        private const val STRING_REGULAR_EXPRESSION_MATCHING = R.string.question_vo_regular_expression_matching
         private const val STRING_REVERSE_INTEGER = R.string.question_vo_reverse_integer
         private const val STRING_STRING_TO_INTEGER_ATOI =
             R.string.question_vo_string_to_integer_atoi
@@ -47,6 +48,10 @@ data class QuestionVO(val name: String, val question: Question) : Parcelable {
                     context.getString(STRING_PALINDROME_NUMBER),
                     question
                 )
+                Question.REGULAR_EXPRESSION_MATCHING -> QuestionVO(
+                    context.getString(STRING_REGULAR_EXPRESSION_MATCHING),
+                    question
+                )
                 Question.REVERSE_INTEGER -> QuestionVO(
                     context.getString(STRING_REVERSE_INTEGER),
                     question
@@ -72,6 +77,7 @@ data class QuestionVO(val name: String, val question: Question) : Parcelable {
             )
             Question.MEDIAN_OF_TWO_SORTED_ARRAYS -> MedianOfTwoSortedArrays(context)
             Question.PALINDROME_NUMBER -> PalindromeNumber(context)
+            Question.REGULAR_EXPRESSION_MATCHING -> RegularExpressionMatching(context)
             Question.REVERSE_INTEGER -> ReverseInteger(context)
             Question.STRING_TO_INTEGER_ATOI -> StringToIntegerAtoi(context)
             Question.TWO_SUM -> TwoSum(context)
