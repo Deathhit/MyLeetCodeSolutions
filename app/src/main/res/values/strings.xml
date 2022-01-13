@@ -25,6 +25,7 @@
     </string>
 
     <!--Common-->
+    <string name="common_height_x">height = %s</string>
     <string name="common_input_x">Input:\n%s</string>
     <string name="common_l1_x">l1 = %s</string>
     <string name="common_l2_x">l2 = %s</string>
@@ -38,6 +39,35 @@
     <string name="common_s_x">s = %s</string>
     <string name="common_target_x">target = %s</string>
     <string name="common_x_x">x = %s</string>
+
+    <!--Container With Most Water-->
+    <string name="container_with_most_water_code" tools:ignore="TypographyDashes">
+        <![CDATA[
+        <!DOCTYPE html>
+        <p>&nbsp; &nbsp; fun maxArea(height: IntArray): Int {</p>
+        <p>&nbsp; &nbsp; &nbsp; &nbsp; var area = 0</p>
+        <p>&nbsp; &nbsp; &nbsp; &nbsp; var left = 0</p>
+        <p>&nbsp; &nbsp; &nbsp; &nbsp; var right = height.size - 1</p>
+        <p>&nbsp; &nbsp; &nbsp; &nbsp; while (right &gt; left) {</p>
+        <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; area = kotlin.math.max(</p>
+        <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; area,</p>
+        <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; kotlin.math.min(height[left], height[right]) * (right - left)</p>
+        <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; )</p>
+        <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (height[left] &lt; height[right])</p>
+        <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; left++</p>
+        <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; else</p>
+        <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; right--</p>
+        <p>&nbsp; &nbsp; &nbsp; &nbsp; }</p>
+        <p>&nbsp; &nbsp; &nbsp; &nbsp; return area</p>
+        <p>&nbsp; &nbsp; }</p>
+        ]]>
+    </string>
+    <string name="container_with_most_water_description">
+        You are given an integer array height of length n. There are n vertical lines drawn such that the two endpoints of the ith line are (i, 0) and (i, height[i]).
+        \n\nFind two lines that together with the x-axis form a container, such that the container contains the most water.
+        \n\nReturn the maximum amount of water a container can store.
+        \n\nNotice that you may not slant the container.
+    </string>
 
     <!--Longest Palindromic Substring-->
     <string name="longest_palindromic_substring_code">
@@ -170,6 +200,7 @@
 
     <!--QuestionVO-->
     <string name="question_vo_add_two_numbers">Add Two Numbers</string>
+    <string name="question_vo_container_with_most_water">Container With Most Water</string>
     <string name="question_vo_longest_palindromic_substring">Longest Palindromic Substring</string>
     <string name="question_vo_longest_substring_without_repeating_characters">Longest Substring Without Repeating Characters</string>
     <string name="question_vo_median_of_two_sorted_arrays">Median Of Two Sorted Arrays</string>

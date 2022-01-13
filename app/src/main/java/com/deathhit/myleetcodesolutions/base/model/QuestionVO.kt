@@ -12,6 +12,8 @@ import kotlinx.parcelize.Parcelize
 data class QuestionVO(val name: String, val question: Question) : Parcelable {
     companion object {
         private const val STRING_ADD_TWO_NUMBERS = R.string.question_vo_add_two_numbers
+        private const val STRING_CONTAINER_WITH_MOST_WATER =
+            R.string.question_vo_container_with_most_water
         private const val STRING_LONGEST_PALINDROMIC_SUBSTRING =
             R.string.question_vo_longest_palindromic_substring
         private const val STRING_LONGEST_SUBSTRING_WITHOUT_REPEATING_CHARACTERS =
@@ -19,7 +21,8 @@ data class QuestionVO(val name: String, val question: Question) : Parcelable {
         private const val STRING_MEDIAN_OF_TWO_SORTED_ARRAYS =
             R.string.question_vo_median_of_two_sorted_arrays
         private const val STRING_PALINDROME_NUMBER = R.string.question_vo_palindrome_number
-        private const val STRING_REGULAR_EXPRESSION_MATCHING = R.string.question_vo_regular_expression_matching
+        private const val STRING_REGULAR_EXPRESSION_MATCHING =
+            R.string.question_vo_regular_expression_matching
         private const val STRING_REVERSE_INTEGER = R.string.question_vo_reverse_integer
         private const val STRING_STRING_TO_INTEGER_ATOI =
             R.string.question_vo_string_to_integer_atoi
@@ -30,6 +33,10 @@ data class QuestionVO(val name: String, val question: Question) : Parcelable {
             return when (question) {
                 Question.ADD_TWO_NUMBERS -> QuestionVO(
                     context.getString(STRING_ADD_TWO_NUMBERS),
+                    question
+                )
+                Question.CONTAINER_WITH_MOST_WATER -> QuestionVO(
+                    context.getString(STRING_CONTAINER_WITH_MOST_WATER),
                     question
                 )
                 Question.LONGEST_PALINDROMIC_SUBSTRING -> QuestionVO(
@@ -71,6 +78,7 @@ data class QuestionVO(val name: String, val question: Question) : Parcelable {
     fun createQuestionModel(context: Context): QuestionModel {
         return when (question) {
             Question.ADD_TWO_NUMBERS -> AddTwoNumbers(context)
+            Question.CONTAINER_WITH_MOST_WATER -> ContainerWithMostWater(context)
             Question.LONGEST_PALINDROMIC_SUBSTRING -> LongestPalindromicSubstring(context)
             Question.LONGEST_SUBSTRING_WITHOUT_REPEATING_CHARACTERS -> LongestSubstringWithoutRepeatingCharacters(
                 context

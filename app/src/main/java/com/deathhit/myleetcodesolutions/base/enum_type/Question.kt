@@ -2,6 +2,7 @@ package com.deathhit.myleetcodesolutions.base.enum_type
 
 enum class Question {
     ADD_TWO_NUMBERS,
+    CONTAINER_WITH_MOST_WATER,
     LONGEST_PALINDROMIC_SUBSTRING,
     LONGEST_SUBSTRING_WITHOUT_REPEATING_CHARACTERS,
     MEDIAN_OF_TWO_SORTED_ARRAYS,
