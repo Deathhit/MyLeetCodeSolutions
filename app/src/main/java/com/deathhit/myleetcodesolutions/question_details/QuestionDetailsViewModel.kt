@@ -19,7 +19,7 @@ class QuestionDetailsViewModel(application: Application) :
         val statusTitle: Status<String>
     )
 
-    private val questionModel by lazy { questionVO!!.createQuestionModel(getApplication()) }
+    private val questionModel by lazy { questionVO!!.createQuestionModel(application) }
 
     private val statusCode = StatePackage<Spanned>()
     private val statusDescription = StatePackage<String>()
