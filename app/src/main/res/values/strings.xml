@@ -30,6 +30,7 @@
     <string name="common_l1_x">l1 = %s</string>
     <string name="common_l2_x">l2 = %s</string>
     <string name="common_num_rows_x">numRows = %s</string>
+    <string name="common_num_x">num = %s</string>
     <string name="common_numbers_x">numbers = %s</string>
     <string name="common_numbers1_x" tools:ignore="Typos">numbers1 = %s</string>
     <string name="common_numbers2_x">numbers2 = %s</string>
@@ -67,6 +68,45 @@
         \n\nFind two lines that together with the x-axis form a container, such that the container contains the most water.
         \n\nReturn the maximum amount of water a container can store.
         \n\nNotice that you may not slant the container.
+    </string>
+
+    <!--Integer To Roman-->
+    <string name="integer_to_roman_code">
+        <![CDATA[
+        <!DOCTYPE html>
+        <p>&nbsp; &nbsp; fun intToRoman(num: Int): String {</p>
+        <p>&nbsp; &nbsp; &nbsp; &nbsp; val strArray =</p>
+        <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; arrayOf(&quot;M&quot;, &quot;CM&quot;, &quot;D&quot;, &quot;CD&quot;, &quot;C&quot;, &quot;XC&quot;, &quot;L&quot;, &quot;XL&quot;, &quot;X&quot;, &quot;IX&quot;, &quot;V&quot;, &quot;IV&quot;, &quot;I&quot;)</p>
+        <p>&nbsp; &nbsp; &nbsp; &nbsp; val valueArray = arrayOf(1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1)</p>
+        <p>&nbsp; &nbsp; &nbsp; &nbsp; val sb = StringBuilder()</p>
+        <p>&nbsp; &nbsp; &nbsp; &nbsp; var tempNum = num</p>
+        <p>&nbsp; &nbsp; &nbsp; &nbsp; valueArray.forEachIndexed { index, value -&gt;</p>
+        <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; val n = tempNum / value</p>
+        <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; repeat(n) {</p>
+        <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; sb.append(strArray[index])</p>
+        <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</p>
+        <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; tempNum %= value</p>
+        <p>&nbsp; &nbsp; &nbsp; &nbsp; }</p>
+        <p>&nbsp; &nbsp; &nbsp; &nbsp; return sb.toString()</p>
+        <p>&nbsp; &nbsp; }</p>
+        ]]>
+    </string>
+    <string name="integer_to_roman_description">
+        Roman numerals are represented by seven different symbols: I, V, X, L, C, D and M.
+        \n\nSymbol       Value
+        \nI             1
+        \nV             5
+        \nX             10
+        \nL             50
+        \nC             100
+        \nD             500
+        \nM             1000
+        \nFor example, 2 is written as II in Roman numeral, just two one\'s added together. 12 is written as XII, which is simply X + II. The number 27 is written as XXVII, which is XX + V + II.
+        \n\nRoman numerals are usually written largest to smallest from left to right. However, the numeral for four is not IIII. Instead, the number four is written as IV. Because the one is before the five we subtract it making four. The same principle applies to the number nine, which is written as IX. There are six instances where subtraction is used:
+        \n\nI can be placed before V (5) and X (10) to make 4 and 9.
+        \nX can be placed before L (50) and C (100) to make 40 and 90.
+        \nC can be placed before D (500) and M (1000) to make 400 and 900.
+        \nGiven an integer, convert it to a roman numeral.
     </string>
 
     <!--Longest Palindromic Substring-->
@@ -201,6 +241,7 @@
     <!--QuestionVO-->
     <string name="question_vo_add_two_numbers">Add Two Numbers</string>
     <string name="question_vo_container_with_most_water">Container With Most Water</string>
+    <string name="question_vo_integer_to_roman">Integer To Roman</string>
     <string name="question_vo_longest_palindromic_substring">Longest Palindromic Substring</string>
     <string name="question_vo_longest_substring_without_repeating_characters">Longest Substring Without Repeating Characters</string>
     <string name="question_vo_median_of_two_sorted_arrays">Median Of Two Sorted Arrays</string>

@@ -14,6 +14,8 @@ data class QuestionVO(val name: String, val question: Question) : Parcelable {
         private const val STRING_ADD_TWO_NUMBERS = R.string.question_vo_add_two_numbers
         private const val STRING_CONTAINER_WITH_MOST_WATER =
             R.string.question_vo_container_with_most_water
+        private const val STRING_INTEGER_TO_ROMAN =
+            R.string.question_vo_integer_to_roman
         private const val STRING_LONGEST_PALINDROMIC_SUBSTRING =
             R.string.question_vo_longest_palindromic_substring
         private const val STRING_LONGEST_SUBSTRING_WITHOUT_REPEATING_CHARACTERS =
@@ -37,6 +39,10 @@ data class QuestionVO(val name: String, val question: Question) : Parcelable {
                 )
                 Question.CONTAINER_WITH_MOST_WATER -> QuestionVO(
                     context.getString(STRING_CONTAINER_WITH_MOST_WATER),
+                    question
+                )
+                Question.INTEGER_TO_ROMAN -> QuestionVO(
+                    context.getString(STRING_INTEGER_TO_ROMAN),
                     question
                 )
                 Question.LONGEST_PALINDROMIC_SUBSTRING -> QuestionVO(
@@ -79,6 +85,7 @@ data class QuestionVO(val name: String, val question: Question) : Parcelable {
         return when (question) {
             Question.ADD_TWO_NUMBERS -> AddTwoNumbers(context)
             Question.CONTAINER_WITH_MOST_WATER -> ContainerWithMostWater(context)
+            Question.INTEGER_TO_ROMAN -> IntegerToRoman(context)
             Question.LONGEST_PALINDROMIC_SUBSTRING -> LongestPalindromicSubstring(context)
             Question.LONGEST_SUBSTRING_WITHOUT_REPEATING_CHARACTERS -> LongestSubstringWithoutRepeatingCharacters(
                 context
