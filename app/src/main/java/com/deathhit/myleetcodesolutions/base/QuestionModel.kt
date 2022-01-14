@@ -5,10 +5,8 @@ import android.text.Spanned
 import com.deathhit.myleetcodesolutions.base.model.AnswerVO
 
 abstract class QuestionModel(val context: Context) {
-    val code by lazy { code() }
-    val description by lazy { description() }
+    abstract val code: Spanned
+    abstract val description: String
 
-    protected abstract fun code(): Spanned
-    protected abstract fun description(): String
-    abstract suspend fun run(): AnswerVO
+    abstract fun run(): AnswerVO
 }

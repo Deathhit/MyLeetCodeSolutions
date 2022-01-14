@@ -26,14 +26,16 @@ class AddTwoNumbers(context: Context) : QuestionModel(context) {
         var next: ListNode? = null
     }
 
-    override fun code(): Spanned = HtmlCompat.fromHtml(
-        context.getString(STRING_CODE),
-        HtmlCompat.FROM_HTML_MODE_COMPACT
-    )
+    override val code: Spanned by lazy {
+        HtmlCompat.fromHtml(
+            context.getString(STRING_CODE),
+            HtmlCompat.FROM_HTML_MODE_COMPACT
+        )
+    }
 
-    override fun description(): String = context.getString(STRING_DESCRIPTION)
+    override val description: String by lazy { context.getString(STRING_DESCRIPTION) }
 
-    override suspend fun run(): AnswerVO {
+    override fun run(): AnswerVO {
         val l1 = generateListNode()
         val l2 = generateListNode()
         val inputText = context.getString(
