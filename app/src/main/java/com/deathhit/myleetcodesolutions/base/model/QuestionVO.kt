@@ -26,6 +26,7 @@ data class QuestionVO(val name: String, val question: Question) : Parcelable {
         private const val STRING_REGULAR_EXPRESSION_MATCHING =
             R.string.question_vo_regular_expression_matching
         private const val STRING_REVERSE_INTEGER = R.string.question_vo_reverse_integer
+        private const val STRING_ROMAN_TO_INTEGER = R.string.question_vo_roman_to_integer
         private const val STRING_STRING_TO_INTEGER_ATOI =
             R.string.question_vo_string_to_integer_atoi
         private const val STRING_TWO_SUM = R.string.question_vo_two_sum
@@ -69,6 +70,10 @@ data class QuestionVO(val name: String, val question: Question) : Parcelable {
                     context.getString(STRING_REVERSE_INTEGER),
                     question
                 )
+                Question.ROMAN_TO_INTEGER -> QuestionVO(
+                    context.getString(STRING_ROMAN_TO_INTEGER),
+                    question
+                )
                 Question.STRING_TO_INTEGER_ATOI -> QuestionVO(
                     context.getString(STRING_STRING_TO_INTEGER_ATOI), question
                 )
@@ -94,6 +99,7 @@ data class QuestionVO(val name: String, val question: Question) : Parcelable {
             Question.PALINDROME_NUMBER -> PalindromeNumber(context)
             Question.REGULAR_EXPRESSION_MATCHING -> RegularExpressionMatching(context)
             Question.REVERSE_INTEGER -> ReverseInteger(context)
+            Question.ROMAN_TO_INTEGER -> RomanToInteger(context)
             Question.STRING_TO_INTEGER_ATOI -> StringToIntegerAtoi(context)
             Question.TWO_SUM -> TwoSum(context)
             Question.ZIGZAG_CONVERSION -> ZigzagConversion(context)
