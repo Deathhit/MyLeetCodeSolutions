@@ -66,11 +66,11 @@ class QuestionDetailsFragment : Fragment() {
 
         lifecycleScope.launchWhenStarted {
             viewModel.stateFlow.collect { state ->
-                state.statusCode.signForStatus(this) { textCode?.text = it }
-                state.statusDescription.signForStatus(this) { textDescription?.text = it }
-                state.statusInput.signForStatus(this) { textInput?.text = it }
-                state.statusOutput.signForStatus(this) { textOutput?.text = it }
-                state.statusTitle.signForStatus(this) { textTitle?.text = it }
+                state.statusCode.signForViewStatus(this@QuestionDetailsFragment) { textCode?.text = it }
+                state.statusDescription.signForViewStatus(this@QuestionDetailsFragment) { textDescription?.text = it }
+                state.statusInput.signForViewStatus(this@QuestionDetailsFragment) { textInput?.text = it }
+                state.statusOutput.signForViewStatus(this@QuestionDetailsFragment) { textOutput?.text = it }
+                state.statusTitle.signForViewStatus(this@QuestionDetailsFragment) { textTitle?.text = it }
             }
         }
     }
