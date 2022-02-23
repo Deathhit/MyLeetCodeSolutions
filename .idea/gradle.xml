@@ -11,8 +11,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/environment" />
-            <option value="$PROJECT_DIR$/framework" />
+            <option value="$PROJECT_DIR$/lib_state_package" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

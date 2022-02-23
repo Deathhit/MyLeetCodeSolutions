@@ -6,11 +6,13 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:name=".ProjectApplication"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyLeetCodeSolutions">
+
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.main.MainActivity"
             android:exported="true"
             android:launchMode="singleTop">
             <intent-filter>
@@ -19,7 +21,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".QuestionActivity" android:launchMode="singleTop"/>
+
+        <activity android:name=".activity.question.QuestionActivity" android:launchMode="singleTop"/>
+
     </application>
 
 </manifest>
