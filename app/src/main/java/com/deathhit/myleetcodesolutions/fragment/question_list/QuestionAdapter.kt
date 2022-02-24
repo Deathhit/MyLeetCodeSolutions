@@ -1,6 +1,7 @@
 package com.deathhit.myleetcodesolutions.fragment.question_list
 
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.deathhit.myleetcodesolutions.model.QuestionVO
@@ -18,14 +19,23 @@ abstract class QuestionAdapter : ListAdapter<QuestionVO, QuestionViewHolder>(COM
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): QuestionViewHolder {
         val holder = QuestionViewHolder(parent)
-        holder.itemView.setOnClickListener {
-            holder.item?.let { item -> onItemClick(item, holder.adapterPosition) }
-        }
+        configureViewHolder(holder)
         return holder
     }
 
     override fun onBindViewHolder(holder: QuestionViewHolder, position: Int) {
-        holder.item = getItem(position)?.also { item -> holder.textName.text = item.name }
+        holder.item =
+            getItem(position)?.also { item -> bindTextName(item, holder.binding.textViewName) }
+    }
+
+    private fun bindTextName(item: QuestionVO, textName: TextView) {
+        textName.text = item.name
+    }
+
+    private fun configureViewHolder(holder: QuestionViewHolder) {
+        holder.itemView.setOnClickListener {
+            holder.item?.let { item -> onItemClick(item, holder.adapterPosition) }
+        }
     }
 
     abstract fun onItemClick(item: QuestionVO, pos: Int)

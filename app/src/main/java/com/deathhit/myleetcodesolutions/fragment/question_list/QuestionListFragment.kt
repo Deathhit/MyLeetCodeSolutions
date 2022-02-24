@@ -7,8 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.RecyclerView
-import com.deathhit.myleetcodesolutions.R
+import com.deathhit.myleetcodesolutions.databinding.FragmentQuestionListBinding
 import com.deathhit.myleetcodesolutions.model.QuestionVO
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
@@ -16,9 +15,6 @@ import kotlinx.coroutines.flow.collect
 @AndroidEntryPoint
 class QuestionListFragment : Fragment() {
     companion object {
-        private const val ID_RECYCLER_VIEW = R.id.recyclerView
-        private const val LAYOUT = R.layout.fragment_question_list
-
         fun create(): QuestionListFragment {
             val args = Bundle()
             val fragment = QuestionListFragment()
@@ -27,9 +23,10 @@ class QuestionListFragment : Fragment() {
         }
     }
 
-    private val viewModel: QuestionListViewModel by viewModels()
+    private val binding: FragmentQuestionListBinding get() = _binding!!
+    private var _binding: FragmentQuestionListBinding? = null
 
-    private var recyclerView: RecyclerView? = null
+    private val viewModel: QuestionListViewModel by viewModels()
 
     private var questionAdapter: QuestionAdapter? = null
 
@@ -39,13 +36,14 @@ class QuestionListFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(LAYOUT, container, false)
+    ): View {
+        _binding = FragmentQuestionListBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        recyclerView = view.findViewById<RecyclerView>(ID_RECYCLER_VIEW).apply {
+        binding.recyclerView.apply {
             setHasFixedSize(true)
             questionAdapter = createQuestionAdapter().also { adapter = it }
         }
@@ -63,7 +61,7 @@ class QuestionListFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        recyclerView = null
+        _binding = null
 
         questionAdapter = null
     }

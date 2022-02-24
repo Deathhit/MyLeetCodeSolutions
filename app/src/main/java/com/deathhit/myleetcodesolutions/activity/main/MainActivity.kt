@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentOnAttachListener
 import androidx.lifecycle.lifecycleScope
 import com.deathhit.myleetcodesolutions.activity.question.QuestionActivity
 import com.deathhit.myleetcodesolutions.R
+import com.deathhit.myleetcodesolutions.databinding.ActivityMainBinding
 import com.deathhit.myleetcodesolutions.model.QuestionVO
 import com.deathhit.myleetcodesolutions.fragment.question_list.QuestionListFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -18,8 +19,8 @@ class MainActivity : AppCompatActivity() {
     companion object {
         private const val TAG = "com.deathhit.myleetcodesolutions.activity.main.MainActivity"
         private const val TAG_QUESTION_LIST = "$TAG.TAG_QUESTION_LIST"
+
         private const val ID_QUESTION_LIST_CONTAINER = R.id.activity_questionListContainer
-        private const val LAYOUT = R.layout.activity_main
     }
 
     private val fragmentOnAttachListener: FragmentOnAttachListener =
@@ -31,10 +32,13 @@ class MainActivity : AppCompatActivity() {
 
     private val viewModel: MainActivityViewModel by viewModels()
 
+    private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         supportFragmentManager.addFragmentOnAttachListener(fragmentOnAttachListener)
         super.onCreate(savedInstanceState)
-        setContentView(LAYOUT)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         savedInstanceState ?: viewModel.addQuestionListFragment()
 

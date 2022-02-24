@@ -7,6 +7,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.deathhit.myleetcodesolutions.R
+import com.deathhit.myleetcodesolutions.databinding.ActivityQuestionBinding
 import com.deathhit.myleetcodesolutions.model.QuestionVO
 import com.deathhit.myleetcodesolutions.fragment.question_details.QuestionDetailsFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -20,7 +21,6 @@ class QuestionActivity : AppCompatActivity() {
         private const val TAG_QUESTION_DETAILS_FRAGMENT = "$TAG.TAG_QUESTION_DETAILS_FRAGMENT"
 
         private const val ID_CONTAINER = R.id.activity_frameLayout_container
-        private const val LAYOUT = R.layout.activity_question
 
         fun createIntent(context: Context, questionVO: QuestionVO): Intent {
             val intent = Intent(context, QuestionActivity::class.java)
@@ -31,9 +31,12 @@ class QuestionActivity : AppCompatActivity() {
 
     private val viewModel: QuestionActivityViewModel by viewModels()
 
+    private lateinit var binding: ActivityQuestionBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(LAYOUT)
+        binding = ActivityQuestionBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         savedInstanceState ?: viewModel.addQuestionDetailsFragment()
 
