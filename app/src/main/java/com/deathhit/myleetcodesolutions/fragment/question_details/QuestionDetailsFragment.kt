@@ -6,11 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.deathhit.myleetcodesolutions.databinding.FragmentQuestionDetailsBinding
 import com.deathhit.myleetcodesolutions.model.QuestionVO
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class QuestionDetailsFragment : Fragment() {
@@ -44,22 +47,24 @@ class QuestionDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        lifecycleScope.launchWhenStarted {
-            viewModel.stateFlow.collect { state ->
-                state.statusCode.signForViewStatus(this@QuestionDetailsFragment) {
-                    binding.textViewCode.text = it
-                }
-                state.statusDescription.signForViewStatus(this@QuestionDetailsFragment) {
-                    binding.textViewDescription.text = it
-                }
-                state.statusInput.signForViewStatus(this@QuestionDetailsFragment) {
-                    binding.textViewInput.text = it
-                }
-                state.statusOutput.signForViewStatus(this@QuestionDetailsFragment) {
-                    binding.textViewOutput.text = it
-                }
-                state.statusTitle.signForViewStatus(this@QuestionDetailsFragment) {
-                    binding.textViewTitle.text = it
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.stateFlow.collect { state ->
+                    state.statusCode.signForViewStatus(this@QuestionDetailsFragment) {
+                        binding.textViewCode.text = it
+                    }
+                    state.statusDescription.signForViewStatus(this@QuestionDetailsFragment) {
+                        binding.textViewDescription.text = it
+                    }
+                    state.statusInput.signForViewStatus(this@QuestionDetailsFragment) {
+                        binding.textViewInput.text = it
+                    }
+                    state.statusOutput.signForViewStatus(this@QuestionDetailsFragment) {
+                        binding.textViewOutput.text = it
+                    }
+                    state.statusTitle.signForViewStatus(this@QuestionDetailsFragment) {
+                        binding.textViewTitle.text = it
+                    }
                 }
             }
         }

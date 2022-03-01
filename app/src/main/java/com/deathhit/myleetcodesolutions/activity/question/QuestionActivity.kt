@@ -5,13 +5,16 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.deathhit.myleetcodesolutions.R
 import com.deathhit.myleetcodesolutions.databinding.ActivityQuestionBinding
 import com.deathhit.myleetcodesolutions.model.QuestionVO
 import com.deathhit.myleetcodesolutions.fragment.question_details.QuestionDetailsFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class QuestionActivity : AppCompatActivity() {
@@ -40,10 +43,12 @@ class QuestionActivity : AppCompatActivity() {
 
         savedInstanceState ?: viewModel.addQuestionDetailsFragment()
 
-        lifecycleScope.launchWhenStarted {
-            viewModel.stateFlow.collect { state ->
-                state.eventAddQuestionDetailsFragment.signForEvent(this@QuestionActivity) {
-                    addAddQuestionDetailsFragment(it)
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.stateFlow.collect { state ->
+                    state.eventAddQuestionDetailsFragment.signForEvent(this@QuestionActivity) {
+                        addAddQuestionDetailsFragment(it)
+                    }
                 }
             }
         }

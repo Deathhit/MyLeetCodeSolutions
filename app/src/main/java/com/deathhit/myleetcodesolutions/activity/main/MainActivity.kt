@@ -5,7 +5,9 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentOnAttachListener
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.deathhit.myleetcodesolutions.activity.question.QuestionActivity
 import com.deathhit.myleetcodesolutions.R
 import com.deathhit.myleetcodesolutions.databinding.ActivityMainBinding
@@ -13,6 +15,7 @@ import com.deathhit.myleetcodesolutions.model.QuestionVO
 import com.deathhit.myleetcodesolutions.fragment.question_list.QuestionListFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -42,14 +45,16 @@ class MainActivity : AppCompatActivity() {
 
         savedInstanceState ?: viewModel.addQuestionListFragment()
 
-        lifecycleScope.launchWhenStarted {
-            viewModel.stateFlow.collect { state ->
-                state.eventAddQuestionListFragment.signForEvent(this@MainActivity) {
-                    addQuestionListFragment()
-                }
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.stateFlow.collect { state ->
+                    state.eventAddQuestionListFragment.signForEvent(this@MainActivity) {
+                        addQuestionListFragment()
+                    }
 
-                state.eventGoToQuestionActivity.signForEvent(this@MainActivity) {
-                    goToQuestionActivity(it)
+                    state.eventGoToQuestionActivity.signForEvent(this@MainActivity) {
+                        goToQuestionActivity(it)
+                    }
                 }
             }
         }

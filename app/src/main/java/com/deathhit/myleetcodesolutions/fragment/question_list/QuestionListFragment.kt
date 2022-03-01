@@ -6,11 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.deathhit.myleetcodesolutions.databinding.FragmentQuestionListBinding
 import com.deathhit.myleetcodesolutions.model.QuestionVO
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class QuestionListFragment : Fragment() {
@@ -48,13 +51,15 @@ class QuestionListFragment : Fragment() {
             questionAdapter = createQuestionAdapter().also { adapter = it }
         }
 
-        lifecycleScope.launchWhenStarted {
-            viewModel.stateFlow.collect { state ->
-                state.statusQuestionList.signForViewStatus(this@QuestionListFragment) {
-                    questionAdapter?.submitList(it)
-                }
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.stateFlow.collect { state ->
+                    state.statusQuestionList.signForViewStatus(this@QuestionListFragment) {
+                        questionAdapter?.submitList(it)
+                    }
 
-                onStateListener?.invoke(state)
+                    onStateListener?.invoke(state)
+                }
             }
         }
     }
