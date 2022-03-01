@@ -27,28 +27,19 @@ class QuestionDetailsViewModel @Inject constructor(
     }
 
     data class State(
-        val attrQuestionVO: QuestionVO,
-        val statusCode: Status<Spanned>,
-        val statusDescription: Status<String>,
-        val statusInput: Status<String>,
-        val statusOutput: Status<String>,
-        val statusTitle: Status<String>
+        val argQuestionVO: QuestionVO,
+        val statusCode: Status<Spanned> = StatePackage(),
+        val statusDescription: Status<String> = StatePackage(),
+        val statusInput: Status<String> = StatePackage(),
+        val statusOutput: Status<String> = StatePackage(),
+        val statusTitle: Status<String> = StatePackage()
     )
 
-    private val _stateFlow = MutableStateFlow(
-        State(
-            savedStateHandle[KEY_QUESTION_VO]!!,
-            StatePackage(),
-            StatePackage(),
-            StatePackage(),
-            StatePackage(),
-            StatePackage()
-        )
-    )
+    private val _stateFlow = MutableStateFlow(State(savedStateHandle[KEY_QUESTION_VO]!!))
     val stateFlow = _stateFlow.asStateFlow()
 
     private val questionModel by lazy {
-        stateFlow.value.attrQuestionVO.createQuestionModel(
+        stateFlow.value.argQuestionVO.createQuestionModel(
             application
         )
     }
@@ -74,7 +65,7 @@ class QuestionDetailsViewModel @Inject constructor(
     }
 
     fun saveState() {
-        savedStateHandle.set(KEY_QUESTION_VO, stateFlow.value.attrQuestionVO)
+        savedStateHandle.set(KEY_QUESTION_VO, stateFlow.value.argQuestionVO)
     }
 
     private fun showDetails() {
@@ -82,7 +73,7 @@ class QuestionDetailsViewModel @Inject constructor(
             state.copy(
                 statusCode = StatePackage(questionModel.code),
                 statusDescription = StatePackage(questionModel.description),
-                statusTitle = StatePackage(state.attrQuestionVO.name)
+                statusTitle = StatePackage(state.argQuestionVO.name)
             )
         }
     }

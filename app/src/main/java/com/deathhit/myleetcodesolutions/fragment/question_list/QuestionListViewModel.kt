@@ -17,11 +17,11 @@ import javax.inject.Inject
 class QuestionListViewModel @Inject constructor(private val application: Application) :
     ViewModel() {
     data class State(
-        val eventGoToQuestionActivity: Event<QuestionVO>,
-        val statusQuestionList: Status<List<QuestionVO>>
+        val eventGoToQuestionActivity: Event<QuestionVO> = StatePackage(),
+        val statusQuestionList: Status<List<QuestionVO>> = StatePackage()
     )
 
-    private val _stateFlow = MutableStateFlow(State(StatePackage(), StatePackage()))
+    private val _stateFlow = MutableStateFlow(State())
     val stateFlow = _stateFlow.asStateFlow()
 
     init {

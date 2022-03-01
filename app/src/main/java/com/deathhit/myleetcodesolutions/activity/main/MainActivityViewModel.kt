@@ -13,11 +13,11 @@ import javax.inject.Inject
 @HiltViewModel
 class MainActivityViewModel @Inject constructor() : ViewModel() {
     data class State(
-        val eventAddQuestionListFragment: Event<Unit>,
-        val eventGoToQuestionActivity: Event<QuestionVO>
+        val eventAddQuestionListFragment: Event<Unit> = StatePackage(),
+        val eventGoToQuestionActivity: Event<QuestionVO> = StatePackage()
     )
 
-    private val _stateFlow = MutableStateFlow(State(StatePackage(), StatePackage()))
+    private val _stateFlow = MutableStateFlow(State())
     val stateFlow = _stateFlow.asStateFlow()
 
     fun addQuestionListFragment() {

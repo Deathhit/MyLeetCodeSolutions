@@ -21,21 +21,20 @@ class QuestionActivityViewModel @Inject constructor(private val savedStateHandle
     }
 
     data class State(
-        val attrQuestionVO: QuestionVO,
-        val eventAddQuestionDetailsFragment: Event<QuestionVO>
+        val argQuestionVO: QuestionVO,
+        val eventAddQuestionDetailsFragment: Event<QuestionVO> = StatePackage()
     )
 
-    private val _stateFlow =
-        MutableStateFlow(State(savedStateHandle[KEY_QUESTION_VO]!!, StatePackage()))
+    private val _stateFlow = MutableStateFlow(State(savedStateHandle[KEY_QUESTION_VO]!!))
     val stateFlow = _stateFlow.asStateFlow()
 
     fun addQuestionDetailsFragment() {
         _stateFlow.update { state ->
-            state.copy(eventAddQuestionDetailsFragment = StatePackage(state.attrQuestionVO))
+            state.copy(eventAddQuestionDetailsFragment = StatePackage(state.argQuestionVO))
         }
     }
 
     fun saveState() {
-        savedStateHandle.set(KEY_QUESTION_VO, stateFlow.value.attrQuestionVO)
+        savedStateHandle.set(KEY_QUESTION_VO, stateFlow.value.argQuestionVO)
     }
 }
